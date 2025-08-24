@@ -1,0 +1,35 @@
+From e889237616d06e3afcbffdc55ed7fc2ff82988cd Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 19 Aug 2022 12:01:32 +0200
+Subject: [PATCH] [2.x-0.30] Use port 22 and load host keys from
+ `/etc/dropbear`
+
+In dropbear releases up to version 0.30, dropbear used port 2244 by
+default and only looked for host keys in the current directory. This
+patch makes these versions behave like more recent dropbear releases by
+using port 22 and looking for host keys in `/etc/dropbear` instead.
+---
+ options.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/options.h b/options.h
+index c85c2f5..494a578 100644
+--- a/options.h
++++ b/options.h
+@@ -10,11 +10,11 @@
+  * Define compile-time options below.
+  ******************************************************************/
+
+-#define DROPBEAR_PORT 2244 /* for testing */
++#define DROPBEAR_PORT 22 /* for testing */
+
+ /* Hostkey paths */
+-#define DSS_PRIV_FILENAME "dropbear_dss_host_key"
+-#define RSA_PRIV_FILENAME "dropbear_rsa_host_key"
++#define DSS_PRIV_FILENAME "/etc/dropbear/dropbear_dss_host_key"
++#define RSA_PRIV_FILENAME "/etc/dropbear/dropbear_rsa_host_key"
+
+ /* Encryption - at least one required.
+  * SSH2 RFC Draft requires 3DES and recommends blowfish, aes128 & twofish128 */
+--
+2.37.1

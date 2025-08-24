@@ -1,0 +1,29 @@
+From 1b2337ed2098607b6a29fd6282d9b4636e6cc791 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 19 Aug 2022 12:11:31 +0200
+Subject: [PATCH] [0.3x] Disable `-Werror` to avoid build failure on recent
+ compilers
+
+Since libtomboy uses `-Werror`, these new compiler refuse to build it.
+This just disables the `-Werror` flag to make it build even when
+warnings were detected.
+---
+ libtomcrypt/makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/libtomcrypt/makefile b/libtomcrypt/makefile
+index c988ad0..1db2b22 100644
+--- a/libtomcrypt/makefile
++++ b/libtomcrypt/makefile
+@@ -34,6 +34,9 @@ CFLAGS += -Os
+ #CFLAGS += -g3
+ #ch1-01-3
+
++# prevent build failure due to some warnings found by recent compiler versions
++CFLAGS += -Wno-error
++
+ #These flags control how the library gets built.
+
+ #Output filenames for various targets.
+--
+2.37.1

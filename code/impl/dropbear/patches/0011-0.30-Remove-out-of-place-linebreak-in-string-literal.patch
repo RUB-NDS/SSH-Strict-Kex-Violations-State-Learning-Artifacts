@@ -1,0 +1,26 @@
+From 5bef8423e8a8e341d3147d125a4d5089abfbe013 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 19 Aug 2022 12:36:39 +0200
+Subject: [PATCH] [0.30] Remove out-of-place linebreak in string literal
+
+---
+ chansession.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/chansession.c b/chansession.c
+index 8c9578c..ce44ab8 100644
+--- a/chansession.c
++++ b/chansession.c
+@@ -731,8 +731,8 @@ static void execchild(struct ChanSess *chansess) {
+ 		 * usernames with the same uid, but differing groups, then the
+ 		 * differing groups won't be set (as with initgroups()). The solution
+ 		 * is for the sysadmin not to give out the UID twice */
+-		if (getuid() != ses.authstate.pw->pw_uid) { dropbear_exit("couldn't
+-				change user as non-root");
++		if (getuid() != ses.authstate.pw->pw_uid) {
++			dropbear_exit("couldn't change user as non-root");
+ 		}
+ 	}
+
+--
+2.37.1

@@ -1,0 +1,28 @@
+From 9c792299d7dabd12faecaa6db5b967150a33d1e4 Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 19 Aug 2022 17:57:44 +0200
+Subject: [PATCH] [0.33-0.37] Load host keys from `/etc/dropbear`
+
+Instead of using the `/etc`, dropbear should look for the host keys in
+`/etc/dropbear`, just like more recent version do.
+---
+ options.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/options.h b/options.h
+index 9254ac3..512b535 100644
+--- a/options.h
++++ b/options.h
+@@ -32,8 +32,8 @@
+ #define DROPBEAR_PORT 22
+
+ /* Default hostkey paths - these can be specified on the command line */
+-#define DSS_PRIV_FILENAME "/etc/dropbear_dss_host_key"
+-#define RSA_PRIV_FILENAME "/etc/dropbear_rsa_host_key"
++#define DSS_PRIV_FILENAME "/etc/dropbear/dropbear_dss_host_key"
++#define RSA_PRIV_FILENAME "/etc/dropbear/dropbear_rsa_host_key"
+
+ /* Disable X11 Forwarding */
+ /*#define DISABLE_X11FWD*/
+--
+2.37.1

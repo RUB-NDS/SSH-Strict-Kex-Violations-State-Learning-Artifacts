@@ -1,0 +1,37 @@
+From f7b2f1e4a42a700caadfc925875e8fda5f66ad5b Mon Sep 17 00:00:00 2001
+From: Jan Holthuis <jan.holthuis@ruhr-uni-bochum.de>
+Date: Fri, 19 Aug 2022 17:06:08 +0200
+Subject: [PATCH] [0.33] Backport Makefile `install` rule from 0.37
+
+Without these fixes, `make install` does not create the bindir/sbindir
+automatically. For example, if sbindir does not exist, dropbear won't be
+installed to `sbin/dropbear`. Instead, a file named `sbin` is created.
+This fixes the issue by just copying the install rule from version 0.37.
+---
+ Makefile.in | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index 19b38eb..ae0239b 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -46,9 +46,14 @@ strip:
+ 	-strip dropbearconvert
+
+ install: all
+-	install -o root -g root dropbear $(sbindir)
+-	install -o root -g root dropbearkey $(bindir)
+-	install -o root -g root dropbearconvert $(bindir)
++	install -d -m 755 $(DESTDIR)$(sbindir)
++	install -d -m 755 $(DESTDIR)$(bindir)
++	install -m 755 dropbear $(DESTDIR)$(sbindir)
++	install -m 755 dropbearkey $(DESTDIR)$(bindir)
++	install -m 755 dropbearconvert $(DESTDIR)$(bindir)
++	-chown root.root $(DESTDIR)$(sbindir)/dropbear
++	-chown root.root $(DESTDIR)$(bindir)/dropbearkey
++	-chown root.root $(DESTDIR)$(bindir)/dropbearconvert
+
+ static: dropbear-static dropbearkey-static dropbearconvert-static
+
+--
+2.37.1

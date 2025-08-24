@@ -1,0 +1,30 @@
+/*
+ * SSH-Attacker - A Modular Penetration Testing Framework for SSH
+ *
+ * Copyright 2014-2022 Ruhr University Bochum, Paderborn University, and Hackmanit GmbH
+ *
+ * Licensed under Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
+ */
+package de.rub.nds.sshattacker.core.protocol.authentication.parser;
+
+import de.rub.nds.sshattacker.core.protocol.authentication.message.UserAuthSuccessMessage;
+import de.rub.nds.sshattacker.core.protocol.common.SshMessageParser;
+
+public class UserAuthSuccessMessageParser extends SshMessageParser<UserAuthSuccessMessage> {
+
+    public UserAuthSuccessMessageParser(byte[] array) {
+        super(array);
+    }
+
+    public UserAuthSuccessMessageParser(byte[] array, int startPosition) {
+        super(array, startPosition);
+    }
+
+    @Override
+    public UserAuthSuccessMessage createMessage() {
+        return new UserAuthSuccessMessage();
+    }
+
+    @Override
+    protected void parseMessageSpecificContents() {}
+}

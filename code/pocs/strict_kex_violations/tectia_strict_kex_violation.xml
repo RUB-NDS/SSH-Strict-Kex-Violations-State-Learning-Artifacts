@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<workflowTrace>
+    <Send>
+        <messages>
+            <VersionExchange />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <VersionExchange />
+        </expectedMessages>
+    </Receive>
+    <ChangePacketLayer to="BINARY_PACKET" />
+    <Send>
+        <messages>
+            <KeyExchangeInit />
+            <UserAuthRequestPassword />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <KeyExchangeInit />
+        </expectedMessages>
+    </Receive>
+    <DynamicKeyExchange />
+    <Send>
+        <messages>
+            <ServiceRequest />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <ServiceAccept />
+        </expectedMessages>
+    </Receive>
+</workflowTrace>

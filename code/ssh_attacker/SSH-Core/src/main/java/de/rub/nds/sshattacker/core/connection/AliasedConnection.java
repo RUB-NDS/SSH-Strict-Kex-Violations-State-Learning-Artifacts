@@ -1,0 +1,246 @@
+/*
+ * SSH-Attacker - A Modular Penetration Testing Framework for SSH
+ *
+ * Copyright 2014-2022 Ruhr University Bochum, Paderborn University, and Hackmanit GmbH
+ *
+ * Licensed under Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
+ */
+package de.rub.nds.sshattacker.core.connection;
+
+import de.rub.nds.sshattacker.core.exceptions.ConfigurationException;
+import de.rub.nds.tlsattacker.transport.Connection;
+import de.rub.nds.tlsattacker.transport.TransportHandlerType;
+import jakarta.xml.bind.annotation.XmlType;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+@XmlType(
+        propOrder = {
+            "alias",
+            "ip",
+            "ipv6",
+            "port",
+            "hostname",
+            "proxyDataPort",
+            "proxyDataHostname",
+            "proxyControlPort",
+            "proxyControlHostname",
+            "timeout",
+            "connectionTimeout",
+            "transportHandlerType",
+            "sourcePort",
+            "useIpv6"
+        })
+public abstract class AliasedConnection extends Connection implements Aliasable {
+
+    public static final String DEFAULT_CONNECTION_ALIAS = "client";
+    public static final TransportHandlerType DEFAULT_TRANSPORT_HANDLER_TYPE =
+            TransportHandlerType.TCP;
+    public static final Integer DEFAULT_TIMEOUT = 1000;
+    public static final Integer DEFAULT_CONNECTION_TIMEOUT = 8000;
+    public static final Integer DEFAULT_FIRST_TIMEOUT = DEFAULT_TIMEOUT;
+    public static final String DEFAULT_HOSTNAME = "localhost";
+    public static final String DEFAULT_IP = "127.0.0.1";
+    public static final Integer DEFAULT_PORT = 65222;
+
+    protected String alias;
+
+    protected AliasedConnection() {
+        super();
+    }
+
+    protected AliasedConnection(Integer port) {
+        super(port);
+    }
+
+    protected AliasedConnection(Integer port, String hostname) {
+        super(port, hostname);
+    }
+
+    protected AliasedConnection(String alias) {
+        super();
+        this.alias = alias;
+    }
+
+    protected AliasedConnection(String alias, Integer port) {
+        super(port);
+        this.alias = alias;
+    }
+
+    protected AliasedConnection(String alias, Integer port, String hostname) {
+        super(port, hostname);
+        this.alias = alias;
+    }
+
+    protected AliasedConnection(AliasedConnection other) {
+        super(other);
+        alias = other.alias;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    @Override
+    public void assertAliasesSetProperly() throws ConfigurationException {
+        if (alias == null || alias.isEmpty()) {
+            throw new ConfigurationException(
+                    "Empty or null alias in " + getClass().getSimpleName());
+        }
+    }
+
+    public abstract String toCompactString();
+
+    @Override
+    public String aliasesToString() {
+        return alias;
+    }
+
+    @SuppressWarnings("SuspiciousGetterSetter")
+    @Override
+    public String getFirstAlias() {
+        return alias;
+    }
+
+    @Override
+    public Set<String> getAllAliases() {
+        Set<String> set = new HashSet<>();
+        set.add(alias);
+        return set;
+    }
+
+    @Override
+    public boolean containsAlias(String alias) {
+        return this.alias.equals(alias);
+    }
+
+    @Override
+    public boolean containsAllAliases(Collection<String> aliases) {
+        if (aliases == null || aliases.isEmpty()) {
+            return false;
+        }
+        if (aliases.size() == 1) {
+            return alias.equals(aliases.iterator().next());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 41 * hash + Objects.hashCode(alias);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) {
+            return false;
+        }
+        AliasedConnection other = (AliasedConnection) obj;
+        return Objects.equals(alias, other.alias);
+    }
+
+    public void normalize(AliasedConnection defaultCon) {
+        if (alias == null || alias.isEmpty()) {
+            alias = defaultCon.alias;
+            if (alias == null || alias.isEmpty()) {
+                alias = DEFAULT_CONNECTION_ALIAS;
+            }
+        }
+
+        if (transportHandlerType == null) {
+            transportHandlerType = defaultCon.getTransportHandlerType();
+            if (transportHandlerType == null) {
+
+                transportHandlerType = DEFAULT_TRANSPORT_HANDLER_TYPE;
+            }
+        }
+        if (timeout == null) {
+            timeout = defaultCon.getTimeout();
+            if (timeout == null) {
+                timeout = DEFAULT_TIMEOUT;
+            }
+        }
+        if (connectionTimeout == null) {
+            connectionTimeout = defaultCon.getConnectionTimeout();
+            if (connectionTimeout == null) {
+                connectionTimeout = DEFAULT_CONNECTION_TIMEOUT;
+            }
+        }
+        if (hostname == null || hostname.isEmpty()) {
+            hostname = defaultCon.getHostname();
+            if (hostname == null || hostname.isEmpty()) {
+                hostname = DEFAULT_HOSTNAME;
+            }
+        }
+        if (ip == null || ip.isEmpty()) {
+            ip = defaultCon.getHostname();
+            if (ip == null || ip.isEmpty()) {
+                ip = DEFAULT_IP;
+            }
+        }
+        if (port == null) {
+            port = defaultCon.getPort();
+            if (port == null) {
+                port = DEFAULT_PORT;
+            }
+            if (port < 0 || port > 65535) {
+                throw new ConfigurationException(
+                        "Attempt to set default port "
+                                + "failed. Port must be in interval [0,65535], but is "
+                                + port);
+            }
+        }
+        if (useIpv6 == null) {
+            useIpv6 = defaultCon.getUseIpv6();
+            if (useIpv6 == null) {
+                useIpv6 = false;
+            }
+        }
+    }
+
+    public void filter(AliasedConnection defaultCon) {
+        if (alias.equals(defaultCon.alias) || alias.equals(DEFAULT_CONNECTION_ALIAS)) {
+            alias = null;
+        }
+        if (transportHandlerType == defaultCon.getTransportHandlerType()
+                || transportHandlerType == DEFAULT_TRANSPORT_HANDLER_TYPE) {
+            transportHandlerType = null;
+        }
+        if (Objects.equals(timeout, defaultCon.getTimeout())
+                || Objects.equals(timeout, DEFAULT_TIMEOUT)) {
+            timeout = null;
+        }
+        if (hostname.equals(defaultCon.getHostname())
+                || Objects.equals(hostname, DEFAULT_HOSTNAME)) {
+            hostname = null;
+        }
+        if (ip.equals(defaultCon.getHostname()) || Objects.equals(ip, DEFAULT_IP)) {
+            ip = null;
+        }
+        if (Objects.equals(port, defaultCon.getPort()) || Objects.equals(port, DEFAULT_PORT)) {
+            port = null;
+        }
+    }
+
+    @Override
+    protected void addProperties(StringBuilder sb) {
+        sb.append("alias=").append(alias).append(" ");
+        super.addProperties(sb);
+    }
+
+    @Override
+    protected void addCompactProperties(StringBuilder sb) {
+        sb.append(alias).append(":");
+        super.addCompactProperties(sb);
+    }
+
+    public abstract AliasedConnection getCopy();
+}

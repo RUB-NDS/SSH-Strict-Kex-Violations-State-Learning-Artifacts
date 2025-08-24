@@ -1,0 +1,193 @@
+services:
+  tinyssh-server-20150801:
+    image: rub-nds/tinyssh-server:20150801
+    build:
+      context: .
+      args:
+        VERSION: 20150801
+  tinyssh-server-20151001:
+    image: rub-nds/tinyssh-server:20151001
+    build:
+      context: .
+      args:
+        VERSION: 20151001
+  tinyssh-server-20160201:
+    image: rub-nds/tinyssh-server:20160201
+    build:
+      context: .
+      args:
+        VERSION: 20160201
+  tinyssh-server-20160318:
+    image: rub-nds/tinyssh-server:20160318
+    build:
+      context: .
+      args:
+        VERSION: 20160318
+  tinyssh-server-20160720:
+    image: rub-nds/tinyssh-server:20160720
+    build:
+      context: .
+      args:
+        VERSION: 20160720
+  tinyssh-server-20160726:
+    image: rub-nds/tinyssh-server:20160726
+    build:
+      context: .
+      args:
+        VERSION: 20160726
+  tinyssh-server-20160727:
+    image: rub-nds/tinyssh-server:20160727
+    build:
+      context: .
+      args:
+        VERSION: 20160727
+  tinyssh-server-20160809:
+    image: rub-nds/tinyssh-server:20160809
+    build:
+      context: .
+      args:
+        VERSION: 20160809
+  tinyssh-server-20160811:
+    image: rub-nds/tinyssh-server:20160811
+    build:
+      context: .
+      args:
+        VERSION: 20160811
+  tinyssh-server-20160812:
+    image: rub-nds/tinyssh-server:20160812
+    build:
+      context: .
+      args:
+        VERSION: 20160812
+  tinyssh-server-20161001:
+    image: rub-nds/tinyssh-server:20161001
+    build:
+      context: .
+      args:
+        VERSION: 20161001
+  tinyssh-server-20161101:
+    image: rub-nds/tinyssh-server:20161101
+    build:
+      context: .
+      args:
+        VERSION: 20161101
+  tinyssh-server-20180101:
+    image: rub-nds/tinyssh-server:20180101
+    build:
+      context: .
+      args:
+        VERSION: 20180101
+  tinyssh-server-20180110:
+    image: rub-nds/tinyssh-server:20180110
+    build:
+      context: .
+      args:
+        VERSION: 20180110
+  tinyssh-server-20180201:
+    image: rub-nds/tinyssh-server:20180201
+    build:
+      context: .
+      args:
+        VERSION: 20180201
+  tinyssh-server-20181206:
+    image: rub-nds/tinyssh-server:20181206
+    build:
+      context: .
+      args:
+        VERSION: 20181206
+  tinyssh-server-20190101:
+    image: rub-nds/tinyssh-server:20190101
+    build:
+      context: .
+      args:
+        VERSION: 20190101
+  tinyssh-server-20210319:
+    image: rub-nds/tinyssh-server:20210319
+    build:
+      context: .
+      args:
+        VERSION: 20210319
+  tinyssh-server-20210601:
+    image: rub-nds/tinyssh-server:20210601
+    build:
+      context: .
+      args:
+        VERSION: 20210601
+  tinyssh-server-20220101:
+    image: rub-nds/tinyssh-server:20220101
+    build:
+      context: .
+      args:
+        VERSION: 20220101
+  tinyssh-server-20220222:
+    image: rub-nds/tinyssh-server:20220222
+    build:
+      context: .
+      args:
+        VERSION: 20220222
+  tinyssh-server-20220305:
+    image: rub-nds/tinyssh-server:20220305
+    build:
+      context: .
+      args:
+        VERSION: 20220305
+  tinyssh-server-20220311:
+    image: rub-nds/tinyssh-server:20220311
+    build:
+      context: .
+      args:
+        VERSION: 20220311
+  tinyssh-server-20220801:
+    image: rub-nds/tinyssh-server:20220801
+    build:
+      context: .
+      args:
+        VERSION: 20220801
+  tinyssh-server-20230101:
+    image: rub-nds/tinyssh-server:20230101
+    build:
+      context: .
+      args:
+        VERSION: 20230101
+  tinyssh-server-20240101:
+    image: rub-nds/tinyssh-server:20240101
+    build:
+      context: .
+      args:
+        VERSION: 20240101
+  tinyssh-server-20241111:
+    image: rub-nds/tinyssh-server:20241111
+    build:
+      context: .
+      args:
+        VERSION: 20241111
+  tinyssh-server-20241201:
+    image: rub-nds/tinyssh-server:20241201
+    build:
+      context: .
+      args:
+        VERSION: 20241201
+  tinyssh-server-20250126:
+    image: rub-nds/tinyssh-server:20250126
+    build:
+      context: .
+      args:
+        VERSION: 20250126
+  tinyssh-server-20250201:
+    image: rub-nds/tinyssh-server:20250201
+    build:
+      context: .
+      args:
+        VERSION: 20250201
+  tinyssh-server-20250411:
+    image: rub-nds/tinyssh-server:20250411
+    build:
+      context: .
+      args:
+        VERSION: 20250411
+  tinyssh-server-20250501:
+    image: rub-nds/tinyssh-server:20250501
+    build:
+      context: .
+      args:
+        VERSION: 20250501

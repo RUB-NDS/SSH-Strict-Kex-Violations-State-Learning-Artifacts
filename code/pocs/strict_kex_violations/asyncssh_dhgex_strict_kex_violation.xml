@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<workflowTrace>
+    <Send>
+        <messages>
+            <VersionExchange />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <VersionExchange />
+        </expectedMessages>
+    </Receive>
+    <ChangePacketLayer to="BINARY_PACKET" />
+    <Send>
+        <messages>
+            <KeyExchangeInit />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <KeyExchangeInit />
+        </expectedMessages>
+    </Receive>
+    <Send>
+        <messages>
+            <DhGexKeyExchangeRequest />
+            <DhGexKeyExchangeRequest />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <DhGexKeyExchangeGroup />
+            <DhGexKeyExchangeGroup />
+        </expectedMessages>
+    </Receive>
+    <Send>
+        <messages>
+            <DhGexKeyExchangeInit />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <DhGexKeyExchangeReply />
+            <NewKeys />
+        </expectedMessages>
+    </Receive>
+    <Send>
+        <messages>
+            <NewKeys />
+            <ServiceRequest />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <ServiceAccept />
+        </expectedMessages>
+    </Receive>
+</workflowTrace>

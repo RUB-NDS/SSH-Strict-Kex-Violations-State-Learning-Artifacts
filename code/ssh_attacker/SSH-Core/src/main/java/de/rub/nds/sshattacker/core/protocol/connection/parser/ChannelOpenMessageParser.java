@@ -1,0 +1,64 @@
+/*
+ * SSH-Attacker - A Modular Penetration Testing Framework for SSH
+ *
+ * Copyright 2014-2022 Ruhr University Bochum, Paderborn University, and Hackmanit GmbH
+ *
+ * Licensed under Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
+ */
+package de.rub.nds.sshattacker.core.protocol.connection.parser;
+
+import static de.rub.nds.modifiablevariable.util.StringUtil.backslashEscapeString;
+
+import de.rub.nds.sshattacker.core.constants.DataFormatConstants;
+import de.rub.nds.sshattacker.core.protocol.common.SshMessageParser;
+import de.rub.nds.sshattacker.core.protocol.connection.message.ChannelOpenMessage;
+import java.nio.charset.StandardCharsets;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public abstract class ChannelOpenMessageParser<T extends ChannelOpenMessage<T>>
+        extends SshMessageParser<T> {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    protected ChannelOpenMessageParser(byte[] array) {
+        super(array);
+    }
+
+    protected ChannelOpenMessageParser(byte[] array, int startPosition) {
+        super(array, startPosition);
+    }
+
+    public void parseChannelType() {
+        message.setChannelTypeLength(parseIntField(DataFormatConstants.STRING_SIZE_LENGTH));
+        LOGGER.debug("Channel type length: {}", message.getChannelTypeLength().getValue());
+        message.setChannelType(
+                parseByteString(
+                        message.getChannelTypeLength().getValue(), StandardCharsets.US_ASCII));
+        LOGGER.debug(
+                "Channel type: {}", backslashEscapeString(message.getChannelType().getValue()));
+    }
+
+    public void parseSenderChannel() {
+        message.setSenderChannelId(parseIntField(DataFormatConstants.UINT32_SIZE));
+        LOGGER.debug("Sender channel id: {}", message.getSenderChannelId().getValue());
+    }
+
+    public void parseInitialWindowSize() {
+        message.setInitialWindowSize(parseIntField(DataFormatConstants.UINT32_SIZE));
+        LOGGER.debug("Initial window size: {}", message.getInitialWindowSize().getValue());
+    }
+
+    public void parseMaximumPacketSize() {
+        message.setMaximumPacketSize(parseIntField(DataFormatConstants.UINT32_SIZE));
+        LOGGER.debug("Maximum packet size: {}", message.getMaximumPacketSize().getValue());
+    }
+
+    @Override
+    protected void parseMessageSpecificContents() {
+        parseChannelType();
+        parseSenderChannel();
+        parseInitialWindowSize();
+        parseMaximumPacketSize();
+    }
+}

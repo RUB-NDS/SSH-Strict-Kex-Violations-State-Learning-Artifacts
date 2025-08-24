@@ -1,0 +1,84 @@
+/*
+ * SSH-Attacker - A Modular Penetration Testing Framework for SSH
+ *
+ * Copyright 2014-2022 Ruhr University Bochum, Paderborn University, and Hackmanit GmbH
+ *
+ * Licensed under Apache License 2.0 http://www.apache.org/licenses/LICENSE-2.0
+ */
+package de.rub.nds.sshattacker.core.protocol.transport.parser;
+
+import de.rub.nds.sshattacker.core.constants.DataFormatConstants;
+import de.rub.nds.sshattacker.core.constants.Extension;
+import de.rub.nds.sshattacker.core.protocol.common.SshMessageParser;
+import de.rub.nds.sshattacker.core.protocol.transport.message.ExtensionInfoMessage;
+import de.rub.nds.sshattacker.core.protocol.transport.parser.extension.*;
+import java.nio.charset.StandardCharsets;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class ExtensionInfoMessageParser extends SshMessageParser<ExtensionInfoMessage> {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    public ExtensionInfoMessageParser(byte[] array) {
+        super(array);
+    }
+
+    public ExtensionInfoMessageParser(byte[] array, int startPosition) {
+        super(array, startPosition);
+    }
+
+    @Override
+    public ExtensionInfoMessage createMessage() {
+        return new ExtensionInfoMessage();
+    }
+
+    private void parseExtensionCount() {
+        message.setExtensionCount(parseIntField(DataFormatConstants.UINT32_SIZE));
+        LOGGER.debug("Extension count: {}", message.getExtensionCount().getValue());
+    }
+
+    private void parseExtensions() {
+        for (int extensionIndex = 0, extensionStartPointer = getPointer();
+                extensionIndex < message.getExtensionCount().getValue();
+                extensionIndex++, extensionStartPointer = getPointer()) {
+
+            // Extrahiere den Namen der Erweiterung
+            int extensionNameLength = parseIntField(DataFormatConstants.UINT32_SIZE);
+            Extension extension =
+                    Extension.fromName(
+                            parseByteString(extensionNameLength, StandardCharsets.US_ASCII));
+
+            AbstractExtensionParser<?> extensionParser =
+                    switch (extension) {
+                        case SERVER_SIG_ALGS ->
+                                new ServerSigAlgsExtensionParser(getArray(), extensionStartPointer);
+                        case DELAY_COMPRESSION ->
+                                new DelayCompressionExtensionParser(
+                                        getArray(), extensionStartPointer);
+                        case PING_OPENSSH_COM ->
+                                new PingExtensionParser(getArray(), extensionStartPointer);
+                        case PUBLICKEY_ALGORITHMS_ROUMENPETROV ->
+                                new PublicKeyAlgorithmsRoumenPetrovExtensionParser(
+                                        getArray(), extensionStartPointer);
+                        default -> {
+                            LOGGER.debug(
+                                    "Extension [{}] (index {}) is unknown or not implemented, parsing as UnknownExtension",
+                                    extension,
+                                    extensionIndex);
+                            yield new UnknownExtensionParser(getArray(), extensionStartPointer);
+                        }
+                    };
+
+            // Erweiterung hinzufügen
+            message.addExtension(extensionParser.parse());
+            setPointer(extensionParser.getPointer());
+        }
+    }
+
+    @Override
+    protected void parseMessageSpecificContents() {
+        parseExtensionCount();
+        parseExtensions();
+    }
+}

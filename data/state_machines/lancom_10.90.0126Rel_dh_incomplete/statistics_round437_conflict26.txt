@@ -1,0 +1,12 @@
+=== STATISTICS ===
+Number of states: 0
+Number of counter examples / hypotheses: 436
+Total number of steps: 91376
+Total number of resets: 13293
+Number of steps during learning: 81398
+Number of resets during learning: 11570
+Number of steps during equivalence checks: 9978
+Number of resets during equivalence checks: 1723
+Number of restarts due to cache inconsistencies: 26
+Cache hit rate: 0.976364285654965
+Time it took to learn state machine: 3051997 milliseconds

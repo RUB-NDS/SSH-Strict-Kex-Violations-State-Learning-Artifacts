@@ -1,0 +1,797 @@
+digraph g {
+
+    labelloc = "b"
+    label = "Server/Client: TinySSH 20250201
+    Protocol Stage: TRANSPORT
+KEX Algorithm: curve25519-sha256
+Strict KEX enabled: true
+
+ Messages used during testing: 
+MSG_DEBUG
+MSG_KEX_DH_GEX_GROUP
+MSG_KEX_DH_GEX_INIT
+MSG_KEX_DH_GEX_OLD_REQUEST
+MSG_KEX_DH_GEX_REPLY
+MSG_KEX_DH_GEX_REQUEST
+MSG_KEXDH_INIT
+MSG_KEXDH_REPLY
+MSG_DISCONNECT
+MSG_KEX_ECDH_INIT
+MSG_KEX_ECDH_REPLY
+MSG_EXT_INFO
+MSG_KEX_HBR_INIT
+MSG_KEX_HBR_REPLY
+MSG_IGNORE
+MSG_KEXINIT
+MSG_NEWCOMPRESS
+MSG_NEWKEYS
+MSG_PING_OPENSSH
+MSG_PONG_OPENSSH
+MSG_KEX_RSA_DONE
+MSG_KEX_RSA_PUBKEY
+MSG_KEX_RSA_SECRET
+MSG_SERVICE_ACCEPT
+MSG_SERVICE_REQUEST_USERAUTH
+MSG_SERVICE_REQUEST_CONNECTION
+MSG_UNIMPLEMENTED
+MSG_VERSION_EXCHANGE
+MSG_USERAUTH_BANNER
+MSG_USERAUTH_FAILURE
+MSG_USERAUTH_INFO_REQUEST
+MSG_USERAUTH_INFO_RESPONSE
+MSG_USERAUTH_PASSWD_CHANGEREQ
+MSG_USERAUTH_PK_OK
+MSG_USERAUTH_REQUEST_HOSTBASED
+MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE
+MSG_USERAUTH_REQUEST_NONE
+MSG_USERAUTH_REQUEST_PASSWORD
+MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH
+MSG_USERAUTH_REQUEST_PUBLICKEY
+MSG_USERAUTH_REQUEST_UNKNOWN
+MSG_USERAUTH_SUCCESS
+MSG_CHANNEL_CLOSE
+MSG_CHANNEL_DATA
+MSG_CHANNEL_EOF
+MSG_CHANNEL_EXTENDED_DATA
+MSG_CHANNEL_FAILURE
+MSG_CHANNEL_OPEN_CONFIRMATION
+MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH
+MSG_CHANNEL_OPEN_DIRECT_TCPIP
+MSG_CHANNEL_OPEN_FAILURE
+MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH
+MSG_CHANNEL_OPEN_FORWARDED_TCPIP
+MSG_CHANNEL_OPEN_SESSION
+MSG_CHANNEL_OPEN_TUN_OPENSSH
+MSG_CHANNEL_OPEN_UNKNOWN
+MSG_CHANNEL_OPEN_X11
+MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH
+MSG_CHANNEL_REQUEST_BREAK
+MSG_CHANNEL_REQUEST_ENV
+MSG_CHANNEL_REQUEST_EOW_OPENSSH
+MSG_CHANNEL_REQUEST_EXEC
+MSG_CHANNEL_REQUEST_EXIT_SIGNAL
+MSG_CHANNEL_REQUEST_EXIT_STATUS
+MSG_CHANNEL_REQUEST_PTY_REQ
+MSG_CHANNEL_REQUEST_SHELL
+MSG_CHANNEL_REQUEST_SIGNAL
+MSG_CHANNEL_REQUEST_SUBSYSTEM
+MSG_CHANNEL_REQUEST_UNKNOWN
+MSG_CHANNEL_REQUEST_WINDOW_CHANGE
+MSG_CHANNEL_REQUEST_X11_REQ
+MSG_CHANNEL_REQUEST_XON_XOFF
+MSG_CHANNEL_SUCCESS
+MSG_CHANNEL_WINDOW_ADJUST
+MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH
+MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD
+MSG_REQUEST_FAILURE
+MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH
+MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH
+MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH
+MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH
+MSG_REQUEST_SUCCESS
+MSG_GLOBAL_REQUEST_TCPIP_FORWARD
+MSG_GLOBAL_REQUEST_UNKNOWN
+MSG_UNKNOWN_ID_RESERVED_0
+MSG_UNKNOWN_ID_TRANSPORT_GENERIC
+MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION
+MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC
+MSG_UNKNOWN_ID_USERAUTH_GENERIC
+MSG_UNKNOWN_ID_USERAUTH_SPECIFIC
+MSG_UNKNOWN_ID_CONNECTION_GENERIC
+MSG_UNKNOWN_ID_CHANNEL_RELATED
+MSG_UNKNOWN_ID_RESERVED_CLIENT
+MSG_UNKNOWN_ID_RESERVED_PRIVATE
+"
+    fontsize = 30
+    edge[decorate="true"]
+
+	s0 [shape="circle" width="2.3" label="Protocol Version Exchanged
+(s0
+
+SocketState: [UP]" fixedsize="true" height="2.3"];
+	s1 [shape="circle" width="2.3" label="KEX: Algorithms Negotiated
+(s1
+
+SocketState: [UP]" fixedsize="true" height="2.3"];
+	s2 [shape="circle" width="2.3" label="KEX: Keys Derived
+(s2
+
+SocketState: [UP]" fixedsize="true" height="2.3"];
+	s3 [shape="circle" width="2.3" label="KEX Completed
+(s3
+
+SocketState: [UP]" fixedsize="true" height="2.3"];
+	s4 [shape="circle" width="2.3" label="Protocol Completed
+(s4
+
+SocketState: [UP]" fixedsize="true" height="2.3"];
+	s5 [shape="circle" width="2.3" label="Unknown State (s5)
+
+SocketState: [UP]" fixedsize="true" height="2.3"];
+	s6 [shape="circle" color="RED" width="2.3" label="TCP Closed
+(s6
+
+SocketState: [CLOSED, UP]" fixedsize="true" height="2.3"];
+	s0 -> s6 [label="MSG_DEBUG / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_DH_GEX_GROUP / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_DH_GEX_INIT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_DH_GEX_OLD_REQUEST / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_DH_GEX_REPLY / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_DH_GEX_REQUEST / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEXDH_INIT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEXDH_REPLY / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_DISCONNECT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_ECDH_INIT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_ECDH_REPLY / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_EXT_INFO / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_HBR_INIT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_HBR_REPLY / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_IGNORE / KeyExchangeInitMessage"];
+	s0 -> s1 [color="GREEN" style="bold" label="MSG_KEXINIT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_NEWCOMPRESS / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_NEWKEYS / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_PING_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_PONG_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_RSA_DONE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_RSA_PUBKEY / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_KEX_RSA_SECRET / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_SERVICE_ACCEPT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_SERVICE_REQUEST_USERAUTH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_SERVICE_REQUEST_CONNECTION / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNIMPLEMENTED / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_VERSION_EXCHANGE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_BANNER / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_FAILURE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_INFO_REQUEST / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_INFO_RESPONSE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_PK_OK / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_HOSTBASED / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_NONE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_PASSWORD / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_REQUEST_UNKNOWN / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_USERAUTH_SUCCESS / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_CLOSE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_DATA / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_EOF / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_EXTENDED_DATA / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_FAILURE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_CONFIRMATION / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_FAILURE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_SESSION / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_UNKNOWN / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_OPEN_X11 / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_BREAK / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_ENV / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_EXEC / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_PTY_REQ / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_SHELL / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_SIGNAL / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_UNKNOWN / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_X11_REQ / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_REQUEST_XON_XOFF / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_SUCCESS / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_CHANNEL_WINDOW_ADJUST / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_REQUEST_FAILURE / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_REQUEST_SUCCESS / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_GLOBAL_REQUEST_UNKNOWN / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_0 / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / KeyExchangeInitMessage"];
+	s0 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / KeyExchangeInitMessage"];
+	s1 -> s6 [label="MSG_DEBUG / [No output]"];
+	s1 -> s6 [label="MSG_KEX_DH_GEX_GROUP / [No output]"];
+	s1 -> s6 [label="MSG_KEX_DH_GEX_INIT / [No output]"];
+	s1 -> s6 [label="MSG_KEX_DH_GEX_OLD_REQUEST / [No output]"];
+	s1 -> s6 [label="MSG_KEX_DH_GEX_REPLY / [No output]"];
+	s1 -> s6 [label="MSG_KEX_DH_GEX_REQUEST / [No output]"];
+	s1 -> s6 [label="MSG_KEXDH_INIT / [No output]"];
+	s1 -> s6 [label="MSG_KEXDH_REPLY / [No output]"];
+	s1 -> s6 [label="MSG_DISCONNECT / [No output]"];
+	s1 -> s2 [color="GREEN" style="bold" label="MSG_KEX_ECDH_INIT / EcdhKeyExchangeReplyMessage,NewKeysMessage"];
+	s1 -> s6 [label="MSG_KEX_ECDH_REPLY / [No output]"];
+	s1 -> s6 [label="MSG_EXT_INFO / [No output]"];
+	s1 -> s6 [label="MSG_KEX_HBR_INIT / [No output]"];
+	s1 -> s6 [label="MSG_KEX_HBR_REPLY / [No output]"];
+	s1 -> s6 [label="MSG_IGNORE / [No output]"];
+	s1 -> s6 [label="MSG_KEXINIT / [No output]"];
+	s1 -> s6 [label="MSG_NEWCOMPRESS / [No output]"];
+	s1 -> s6 [label="MSG_NEWKEYS / [No output]"];
+	s1 -> s6 [label="MSG_PING_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_PONG_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_KEX_RSA_DONE / [No output]"];
+	s1 -> s6 [label="MSG_KEX_RSA_PUBKEY / [No output]"];
+	s1 -> s6 [label="MSG_KEX_RSA_SECRET / [No output]"];
+	s1 -> s6 [label="MSG_SERVICE_ACCEPT / [No output]"];
+	s1 -> s6 [label="MSG_SERVICE_REQUEST_USERAUTH / [No output]"];
+	s1 -> s6 [label="MSG_SERVICE_REQUEST_CONNECTION / [No output]"];
+	s1 -> s6 [label="MSG_UNIMPLEMENTED / [No output]"];
+	s1 -> s6 [label="MSG_VERSION_EXCHANGE / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_BANNER / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_FAILURE / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_INFO_REQUEST / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_INFO_RESPONSE / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_PK_OK / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_HOSTBASED / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_NONE / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_PASSWORD / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_REQUEST_UNKNOWN / [No output]"];
+	s1 -> s6 [label="MSG_USERAUTH_SUCCESS / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_CLOSE / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_DATA / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_EOF / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_EXTENDED_DATA / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_FAILURE / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_CONFIRMATION / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_FAILURE / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_SESSION / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_UNKNOWN / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_OPEN_X11 / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_BREAK / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_ENV / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_EXEC / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_PTY_REQ / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_SHELL / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_SIGNAL / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_UNKNOWN / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_X11_REQ / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_REQUEST_XON_XOFF / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_SUCCESS / [No output]"];
+	s1 -> s6 [label="MSG_CHANNEL_WINDOW_ADJUST / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / [No output]"];
+	s1 -> s6 [label="MSG_REQUEST_FAILURE / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s1 -> s6 [label="MSG_REQUEST_SUCCESS / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / [No output]"];
+	s1 -> s6 [label="MSG_GLOBAL_REQUEST_UNKNOWN / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_0 / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / [No output]"];
+	s1 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / [No output]"];
+	s2 -> s6 [label="MSG_DEBUG / [No output]"];
+	s2 -> s2 [label="MSG_KEX_DH_GEX_GROUP / [No output]"];
+	s2 -> s2 [label="MSG_KEX_DH_GEX_INIT / [No output]"];
+	s2 -> s2 [label="MSG_KEX_DH_GEX_OLD_REQUEST / [No output]"];
+	s2 -> s5 [label="MSG_KEX_DH_GEX_REPLY / [No output]"];
+	s2 -> s2 [label="MSG_KEX_DH_GEX_REQUEST / [No output]"];
+	s2 -> s2 [label="MSG_KEXDH_INIT / [No output]"];
+	s2 -> s5 [label="MSG_KEXDH_REPLY / [No output]"];
+	s2 -> s6 [label="MSG_DISCONNECT / [No output]"];
+	s2 -> s2 [label="MSG_KEX_ECDH_INIT / [No output]"];
+	s2 -> s5 [label="MSG_KEX_ECDH_REPLY / [No output]"];
+	s2 -> s2 [label="MSG_EXT_INFO / [No output]"];
+	s2 -> s2 [label="MSG_KEX_HBR_INIT / [No output]"];
+	s2 -> s5 [label="MSG_KEX_HBR_REPLY / [No output]"];
+	s2 -> s6 [label="MSG_IGNORE / [No output]"];
+	s2 -> s2 [label="MSG_KEXINIT / [No output]"];
+	s2 -> s2 [label="MSG_NEWCOMPRESS / [No output]"];
+	s2 -> s3 [color="GREEN" style="bold" label="MSG_NEWKEYS / [No output]"];
+	s2 -> s2 [label="MSG_PING_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_PONG_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_KEX_RSA_DONE / [No output]"];
+	s2 -> s2 [label="MSG_KEX_RSA_PUBKEY / [No output]"];
+	s2 -> s2 [label="MSG_KEX_RSA_SECRET / [No output]"];
+	s2 -> s2 [label="MSG_SERVICE_ACCEPT / [No output]"];
+	s2 -> s2 [label="MSG_SERVICE_REQUEST_USERAUTH / [No output]"];
+	s2 -> s2 [label="MSG_SERVICE_REQUEST_CONNECTION / [No output]"];
+	s2 -> s2 [label="MSG_UNIMPLEMENTED / [No output]"];
+	s2 -> s2 [label="MSG_VERSION_EXCHANGE / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_BANNER / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_FAILURE / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_INFO_REQUEST / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_INFO_RESPONSE / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_PK_OK / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_HOSTBASED / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_NONE / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_PASSWORD / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_REQUEST_UNKNOWN / [No output]"];
+	s2 -> s2 [label="MSG_USERAUTH_SUCCESS / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_CLOSE / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_DATA / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_EOF / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_EXTENDED_DATA / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_FAILURE / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_CONFIRMATION / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_FAILURE / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_SESSION / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_UNKNOWN / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_OPEN_X11 / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_BREAK / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_ENV / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_EXEC / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_PTY_REQ / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_SHELL / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_SIGNAL / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_UNKNOWN / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_X11_REQ / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_REQUEST_XON_XOFF / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_SUCCESS / [No output]"];
+	s2 -> s2 [label="MSG_CHANNEL_WINDOW_ADJUST / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / [No output]"];
+	s2 -> s2 [label="MSG_REQUEST_FAILURE / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s2 -> s2 [label="MSG_REQUEST_SUCCESS / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / [No output]"];
+	s2 -> s2 [label="MSG_GLOBAL_REQUEST_UNKNOWN / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_RESERVED_0 / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / [No output]"];
+	s2 -> s2 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / [No output]"];
+	s3 -> s3 [label="MSG_DEBUG / [No output]"];
+	s3 -> s6 [label="MSG_KEX_DH_GEX_GROUP / [No output]"];
+	s3 -> s6 [label="MSG_KEX_DH_GEX_INIT / [No output]"];
+	s3 -> s6 [label="MSG_KEX_DH_GEX_OLD_REQUEST / [No output]"];
+	s3 -> s6 [label="MSG_KEX_DH_GEX_REPLY / [No output]"];
+	s3 -> s6 [label="MSG_KEX_DH_GEX_REQUEST / [No output]"];
+	s3 -> s6 [label="MSG_KEXDH_INIT / [No output]"];
+	s3 -> s6 [label="MSG_KEXDH_REPLY / [No output]"];
+	s3 -> s6 [label="MSG_DISCONNECT / [No output]"];
+	s3 -> s6 [label="MSG_KEX_ECDH_INIT / [No output]"];
+	s3 -> s6 [label="MSG_KEX_ECDH_REPLY / [No output]"];
+	s3 -> s6 [label="MSG_EXT_INFO / [No output]"];
+	s3 -> s6 [label="MSG_KEX_HBR_INIT / [No output]"];
+	s3 -> s6 [label="MSG_KEX_HBR_REPLY / [No output]"];
+	s3 -> s3 [label="MSG_IGNORE / [No output]"];
+	s3 -> s6 [label="MSG_KEXINIT / [No output]"];
+	s3 -> s6 [label="MSG_NEWCOMPRESS / [No output]"];
+	s3 -> s6 [label="MSG_NEWKEYS / [No output]"];
+	s3 -> s6 [label="MSG_PING_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_PONG_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_KEX_RSA_DONE / [No output]"];
+	s3 -> s6 [label="MSG_KEX_RSA_PUBKEY / [No output]"];
+	s3 -> s6 [label="MSG_KEX_RSA_SECRET / [No output]"];
+	s3 -> s6 [label="MSG_SERVICE_ACCEPT / [No output]"];
+	s3 -> s4 [color="GREEN" style="bold" label="MSG_SERVICE_REQUEST_USERAUTH / ServiceAcceptMessage"];
+	s3 -> s6 [label="MSG_SERVICE_REQUEST_CONNECTION / [No output]"];
+	s3 -> s6 [label="MSG_UNIMPLEMENTED / [No output]"];
+	s3 -> s6 [label="MSG_VERSION_EXCHANGE / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_BANNER / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_FAILURE / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_INFO_REQUEST / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_INFO_RESPONSE / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_PK_OK / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_HOSTBASED / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_NONE / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_PASSWORD / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_REQUEST_UNKNOWN / [No output]"];
+	s3 -> s6 [label="MSG_USERAUTH_SUCCESS / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_CLOSE / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_DATA / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_EOF / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_EXTENDED_DATA / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_FAILURE / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_CONFIRMATION / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_FAILURE / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_SESSION / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_UNKNOWN / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_OPEN_X11 / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_BREAK / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_ENV / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_EXEC / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_PTY_REQ / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_SHELL / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_SIGNAL / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_UNKNOWN / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_X11_REQ / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_REQUEST_XON_XOFF / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_SUCCESS / [No output]"];
+	s3 -> s6 [label="MSG_CHANNEL_WINDOW_ADJUST / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / [No output]"];
+	s3 -> s6 [label="MSG_REQUEST_FAILURE / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s3 -> s6 [label="MSG_REQUEST_SUCCESS / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / [No output]"];
+	s3 -> s6 [label="MSG_GLOBAL_REQUEST_UNKNOWN / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_0 / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / [No output]"];
+	s3 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / [No output]"];
+	s4 -> s4 [label="MSG_DEBUG / [No output]"];
+	s4 -> s6 [label="MSG_KEX_DH_GEX_GROUP / [No output]"];
+	s4 -> s6 [label="MSG_KEX_DH_GEX_INIT / [No output]"];
+	s4 -> s6 [label="MSG_KEX_DH_GEX_OLD_REQUEST / [No output]"];
+	s4 -> s6 [label="MSG_KEX_DH_GEX_REPLY / [No output]"];
+	s4 -> s6 [label="MSG_KEX_DH_GEX_REQUEST / [No output]"];
+	s4 -> s6 [label="MSG_KEXDH_INIT / [No output]"];
+	s4 -> s6 [label="MSG_KEXDH_REPLY / [No output]"];
+	s4 -> s6 [label="MSG_DISCONNECT / [No output]"];
+	s4 -> s6 [label="MSG_KEX_ECDH_INIT / [No output]"];
+	s4 -> s6 [label="MSG_KEX_ECDH_REPLY / [No output]"];
+	s4 -> s6 [label="MSG_EXT_INFO / [No output]"];
+	s4 -> s6 [label="MSG_KEX_HBR_INIT / [No output]"];
+	s4 -> s6 [label="MSG_KEX_HBR_REPLY / [No output]"];
+	s4 -> s4 [label="MSG_IGNORE / [No output]"];
+	s4 -> s6 [label="MSG_KEXINIT / [No output]"];
+	s4 -> s6 [label="MSG_NEWCOMPRESS / [No output]"];
+	s4 -> s6 [label="MSG_NEWKEYS / [No output]"];
+	s4 -> s6 [label="MSG_PING_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_PONG_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_KEX_RSA_DONE / [No output]"];
+	s4 -> s6 [label="MSG_KEX_RSA_PUBKEY / [No output]"];
+	s4 -> s6 [label="MSG_KEX_RSA_SECRET / [No output]"];
+	s4 -> s6 [label="MSG_SERVICE_ACCEPT / [No output]"];
+	s4 -> s6 [label="MSG_SERVICE_REQUEST_USERAUTH / [No output]"];
+	s4 -> s6 [label="MSG_SERVICE_REQUEST_CONNECTION / [No output]"];
+	s4 -> s6 [label="MSG_UNIMPLEMENTED / [No output]"];
+	s4 -> s6 [label="MSG_VERSION_EXCHANGE / [No output]"];
+	s4 -> s6 [label="MSG_USERAUTH_BANNER / [No output]"];
+	s4 -> s6 [label="MSG_USERAUTH_FAILURE / [No output]"];
+	s4 -> s6 [label="MSG_USERAUTH_INFO_REQUEST / [No output]"];
+	s4 -> s6 [label="MSG_USERAUTH_INFO_RESPONSE / [No output]"];
+	s4 -> s6 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / [No output]"];
+	s4 -> s6 [label="MSG_USERAUTH_PK_OK / [No output]"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_HOSTBASED / UserAuthFailureMessage"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / UserAuthFailureMessage"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_NONE / UserAuthFailureMessage"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_PASSWORD / UserAuthFailureMessage"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / UserAuthFailureMessage"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / UserAuthFailureMessage"];
+	s4 -> s4 [label="MSG_USERAUTH_REQUEST_UNKNOWN / UserAuthFailureMessage"];
+	s4 -> s6 [label="MSG_USERAUTH_SUCCESS / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_CLOSE / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_DATA / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_EOF / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_EXTENDED_DATA / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_FAILURE / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_CONFIRMATION / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_FAILURE / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_SESSION / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_UNKNOWN / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_OPEN_X11 / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_BREAK / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_ENV / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_EXEC / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_PTY_REQ / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_SHELL / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_SIGNAL / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_UNKNOWN / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_X11_REQ / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_REQUEST_XON_XOFF / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_SUCCESS / [No output]"];
+	s4 -> s6 [label="MSG_CHANNEL_WINDOW_ADJUST / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / [No output]"];
+	s4 -> s6 [label="MSG_REQUEST_FAILURE / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s4 -> s6 [label="MSG_REQUEST_SUCCESS / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / [No output]"];
+	s4 -> s6 [label="MSG_GLOBAL_REQUEST_UNKNOWN / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_0 / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / [No output]"];
+	s4 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / [No output]"];
+	s5 -> s6 [label="MSG_DEBUG / [No output]"];
+	s5 -> s5 [label="MSG_KEX_DH_GEX_GROUP / [No output]"];
+	s5 -> s5 [label="MSG_KEX_DH_GEX_INIT / [No output]"];
+	s5 -> s5 [label="MSG_KEX_DH_GEX_OLD_REQUEST / [No output]"];
+	s5 -> s5 [label="MSG_KEX_DH_GEX_REPLY / [No output]"];
+	s5 -> s5 [label="MSG_KEX_DH_GEX_REQUEST / [No output]"];
+	s5 -> s5 [label="MSG_KEXDH_INIT / [No output]"];
+	s5 -> s5 [label="MSG_KEXDH_REPLY / [No output]"];
+	s5 -> s6 [label="MSG_DISCONNECT / [No output]"];
+	s5 -> s5 [label="MSG_KEX_ECDH_INIT / [No output]"];
+	s5 -> s5 [label="MSG_KEX_ECDH_REPLY / [No output]"];
+	s5 -> s5 [label="MSG_EXT_INFO / [No output]"];
+	s5 -> s5 [label="MSG_KEX_HBR_INIT / [No output]"];
+	s5 -> s5 [label="MSG_KEX_HBR_REPLY / [No output]"];
+	s5 -> s6 [label="MSG_IGNORE / [No output]"];
+	s5 -> s5 [label="MSG_KEXINIT / [No output]"];
+	s5 -> s5 [label="MSG_NEWCOMPRESS / [No output]"];
+	s5 -> s6 [label="MSG_NEWKEYS / [No output]"];
+	s5 -> s5 [label="MSG_PING_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_PONG_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_KEX_RSA_DONE / [No output]"];
+	s5 -> s5 [label="MSG_KEX_RSA_PUBKEY / [No output]"];
+	s5 -> s5 [label="MSG_KEX_RSA_SECRET / [No output]"];
+	s5 -> s5 [label="MSG_SERVICE_ACCEPT / [No output]"];
+	s5 -> s5 [label="MSG_SERVICE_REQUEST_USERAUTH / [No output]"];
+	s5 -> s5 [label="MSG_SERVICE_REQUEST_CONNECTION / [No output]"];
+	s5 -> s5 [label="MSG_UNIMPLEMENTED / [No output]"];
+	s5 -> s5 [label="MSG_VERSION_EXCHANGE / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_BANNER / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_FAILURE / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_INFO_REQUEST / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_INFO_RESPONSE / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_PK_OK / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_HOSTBASED / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_NONE / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_PASSWORD / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_REQUEST_UNKNOWN / [No output]"];
+	s5 -> s5 [label="MSG_USERAUTH_SUCCESS / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_CLOSE / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_DATA / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_EOF / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_EXTENDED_DATA / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_FAILURE / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_CONFIRMATION / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_FAILURE / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_SESSION / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_UNKNOWN / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_OPEN_X11 / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_BREAK / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_ENV / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_EXEC / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_PTY_REQ / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_SHELL / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_SIGNAL / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_UNKNOWN / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_X11_REQ / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_REQUEST_XON_XOFF / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_SUCCESS / [No output]"];
+	s5 -> s5 [label="MSG_CHANNEL_WINDOW_ADJUST / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / [No output]"];
+	s5 -> s5 [label="MSG_REQUEST_FAILURE / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s5 -> s5 [label="MSG_REQUEST_SUCCESS / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / [No output]"];
+	s5 -> s5 [label="MSG_GLOBAL_REQUEST_UNKNOWN / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_RESERVED_0 / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / [No output]"];
+	s5 -> s5 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / [No output]"];
+	s6 -> s6 [label="MSG_DEBUG / [No output]"];
+	s6 -> s6 [label="MSG_KEX_DH_GEX_GROUP / [No output]"];
+	s6 -> s6 [label="MSG_KEX_DH_GEX_INIT / [No output]"];
+	s6 -> s6 [label="MSG_KEX_DH_GEX_OLD_REQUEST / [No output]"];
+	s6 -> s6 [label="MSG_KEX_DH_GEX_REPLY / [No output]"];
+	s6 -> s6 [label="MSG_KEX_DH_GEX_REQUEST / [No output]"];
+	s6 -> s6 [label="MSG_KEXDH_INIT / [No output]"];
+	s6 -> s6 [label="MSG_KEXDH_REPLY / [No output]"];
+	s6 -> s6 [label="MSG_DISCONNECT / [No output]"];
+	s6 -> s6 [label="MSG_KEX_ECDH_INIT / [No output]"];
+	s6 -> s6 [label="MSG_KEX_ECDH_REPLY / [No output]"];
+	s6 -> s6 [label="MSG_EXT_INFO / [No output]"];
+	s6 -> s6 [label="MSG_KEX_HBR_INIT / [No output]"];
+	s6 -> s6 [label="MSG_KEX_HBR_REPLY / [No output]"];
+	s6 -> s6 [label="MSG_IGNORE / [No output]"];
+	s6 -> s6 [label="MSG_KEXINIT / [No output]"];
+	s6 -> s6 [label="MSG_NEWCOMPRESS / [No output]"];
+	s6 -> s6 [label="MSG_NEWKEYS / [No output]"];
+	s6 -> s6 [label="MSG_PING_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_PONG_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_KEX_RSA_DONE / [No output]"];
+	s6 -> s6 [label="MSG_KEX_RSA_PUBKEY / [No output]"];
+	s6 -> s6 [label="MSG_KEX_RSA_SECRET / [No output]"];
+	s6 -> s6 [label="MSG_SERVICE_ACCEPT / [No output]"];
+	s6 -> s6 [label="MSG_SERVICE_REQUEST_USERAUTH / [No output]"];
+	s6 -> s6 [label="MSG_SERVICE_REQUEST_CONNECTION / [No output]"];
+	s6 -> s6 [label="MSG_UNIMPLEMENTED / [No output]"];
+	s6 -> s6 [label="MSG_VERSION_EXCHANGE / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_BANNER / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_FAILURE / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_INFO_REQUEST / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_INFO_RESPONSE / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_PASSWD_CHANGEREQ / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_PK_OK / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_HOSTBASED / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_NONE / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_PASSWORD / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_PUBLICKEY / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_REQUEST_UNKNOWN / [No output]"];
+	s6 -> s6 [label="MSG_USERAUTH_SUCCESS / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_CLOSE / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_DATA / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_EOF / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_EXTENDED_DATA / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_FAILURE / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_CONFIRMATION / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_DIRECT_TCPIP / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_FAILURE / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_STREAMLOCAL_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_FORWARDED_TCPIP / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_SESSION / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_TUN_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_UNKNOWN / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_OPEN_X11 / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_AUTH_AGENT_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_BREAK / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_ENV / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_EOW_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_EXEC / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_SIGNAL / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_EXIT_STATUS / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_PTY_REQ / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_SHELL / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_SIGNAL / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_SUBSYSTEM / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_UNKNOWN / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_WINDOW_CHANGE / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_X11_REQ / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_REQUEST_XON_XOFF / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_SUCCESS / [No output]"];
+	s6 -> s6 [label="MSG_CHANNEL_WINDOW_ADJUST / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD / [No output]"];
+	s6 -> s6 [label="MSG_REQUEST_FAILURE / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_STREAMLOCAL_FORWARD_OPENSSH / [No output]"];
+	s6 -> s6 [label="MSG_REQUEST_SUCCESS / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_TCPIP_FORWARD / [No output]"];
+	s6 -> s6 [label="MSG_GLOBAL_REQUEST_UNKNOWN / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_0 / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_TRANSPORT_GENERIC / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_ALGORITHM_NEGOTIATION / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_GENERIC / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_USERAUTH_SPECIFIC / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_CONNECTION_GENERIC / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_CHANNEL_RELATED / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_CLIENT / [No output]"];
+	s6 -> s6 [label="MSG_UNKNOWN_ID_RESERVED_PRIVATE / [No output]"];
+
+__start0 [label="" shape="none" width="0" height="0"];
+__start0 -> s0;
+
+}
