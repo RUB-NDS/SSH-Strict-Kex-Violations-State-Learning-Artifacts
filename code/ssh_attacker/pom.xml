@@ -4,12 +4,12 @@
     <parent>
         <groupId>de.rub.nds</groupId>
         <artifactId>protocol-toolkit-bom</artifactId>
-        <version>6.2.1</version>
+        <version>6.2.2</version>
     </parent>
 
     <groupId>de.rub.nds.ssh.attacker</groupId>
     <artifactId>ssh-attacker</artifactId>
-    <version>2.0.4-SNAPSHOT</version>
+    <version>2.0.4-SL</version>
     <packaging>pom</packaging>
 
     <name>SSH-Attacker</name>
@@ -45,19 +45,9 @@
     </developers>
 
     <modules>
-        <module>Attacks</module>
         <module>SSH-Client</module>
         <module>SSH-Core</module>
-        <module>SSH-Mitm</module>
-        <module>SSH-Server</module>
     </modules>
-
-    <scm>
-        <connection>scm:git:https://github.com/tls-attacker/SSH-Attacker.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/tls-attacker/SSH-Attacker.git</developerConnection>
-        <tag>v2.0.3</tag>
-        <url>https://github.com/tls-attacker/SSH-Attacker</url>
-    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -76,11 +66,6 @@
         <dependencies>
             <dependency>
                 <groupId>de.rub.nds.ssh.attacker</groupId>
-                <artifactId>attacks</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.rub.nds.ssh.attacker</groupId>
                 <artifactId>ssh-attacker</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
@@ -93,21 +78,6 @@
             <dependency>
                 <groupId>de.rub.nds.ssh.attacker</groupId>
                 <artifactId>ssh-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.rub.nds.ssh.attacker</groupId>
-                <artifactId>ssh-core-oqs</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.rub.nds.ssh.attacker</groupId>
-                <artifactId>ssh-mitm</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>de.rub.nds.ssh.attacker</groupId>
-                <artifactId>ssh-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

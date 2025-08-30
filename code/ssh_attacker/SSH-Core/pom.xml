@@ -4,18 +4,11 @@
     <parent>
         <groupId>de.rub.nds.ssh.attacker</groupId>
         <artifactId>ssh-attacker</artifactId>
-        <version>2.0.4-SNAPSHOT</version>
+        <version>2.0.4-SL</version>
     </parent>
     <artifactId>ssh-core</artifactId>
 
     <name>SSH-Core</name>
-
-    <scm>
-        <connection>scm:git:https://github.com/tls-attacker/SSH-Attacker.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/tls-attacker/SSH-Attacker.git</developerConnection>
-        <tag>v2.0.3</tag>
-        <url>https://github.com/tls-attacker/SSH-Attacker</url>
-    </scm>
 
     <properties>
         <!--suppress UnresolvedMavenProperty -->
