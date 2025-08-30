@@ -1,7 +1,0 @@
-services:
-  golang-server-0.37.0:
-    image: rub-nds/golang-server:0.37.0
-    build:
-      context: .
-      args:
-        VERSION: 0.37.0

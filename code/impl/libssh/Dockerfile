@@ -1,10 +1,11 @@
-# Dockerfile for libssh 0.9.x (based on Debian Bullseye)
+# Dockerfile for the libssh SSH example server
+#
+# Further information can be found at:
+# - https://www.libssh.org/
 
-# `libssh-builder` is just an intermediate image used for building and does
-# not require labels, so we can disable that linter rule.
-# hadolint ignore=DL3049
-FROM debian:bullseye AS libssh-builder
+FROM debian:bullseye
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# Install build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake \
@@ -13,7 +14,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
-ARG VERSION
+
+# Obtain libssh source code
+ARG VERSION=0.11.1
 RUN mkdir /src && \
     curl -s "https://gitlab.com/libssh/libssh-mirror/-/archive/libssh-${VERSION}/libssh-mirror-libssh-${VERSION}.tar.gz" | tar xzf - && \
     mv "libssh-mirror-libssh-${VERSION}" /src/libssh
@@ -29,46 +32,22 @@ RUN sed -i "s/myuser/${USERNAME}/g" examples/ssh_server_fork.c && \
     sed -i "s/mypassword/${PASSWORD}/g" examples/ssh_server_fork.c
 
 WORKDIR /src/libssh/build
-RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/install .. && \
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr .. && \
     make -j "$(nproc)" && \
     make install
 
-FROM debian:bullseye AS libssh-server
-ARG VERSION
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  libssl-dev \
-  zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/*
-COPY host_keys /install/host_keys/
-COPY --from=libssh-builder /install /usr/
-COPY --from=libssh-builder /src/libssh/build/examples /install/examples/
+# Copy hostkeys
+COPY host_keys /etc/ssh/host_keys/
+
 LABEL "ssh.implementation.name"="libssh" \
     "ssh.implementation.version"="${VERSION}" \
     "ssh.implementation.type"="server"
-ENTRYPOINT [ "/install/examples/ssh_server_fork" ]
+
+ENTRYPOINT [ "/src/libssh/build/examples/ssh_server_fork" ]
 CMD [ "-p", "22", \
-  "-k", "/install/host_keys/ssh_host_dsa_key", \
-  "-k", "/install/host_keys/ssh_host_ecdsa_key", \
-  "-k", "/install/host_keys/ssh_host_rsa_key", \
-  "-k", "/install/host_keys/ssh_host_ed25519_key", \
+  "-k", "/etc/ssh/host_keys/ssh_host_dsa_key", \
+  "-k", "/etc/ssh/host_keys/ssh_host_ecdsa_key", \
+  "-k", "/etc/ssh/host_keys/ssh_host_rsa_key", \
+  "-k", "/etc/ssh/host_keys/ssh_host_ed25519_key", \
   "0.0.0.0" ]
 EXPOSE 22
-
-FROM debian:bullseye AS libssh-client
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-ARG DOTSSH=dotssh-client
-COPY "${DOTSSH}" "/root/.ssh/"
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  libssl-dev \
-  zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/*
-COPY --from=libssh-builder /install /usr/
-COPY --from=libssh-builder /src/libssh/build/examples /install/examples/
-
-ARG VERSION
-LABEL "ssh.implementation.name"="libssh" \
-    "ssh.implementation.version"="${VERSION}" \
-    "ssh.implementation.type"="client"
-ENTRYPOINT [ "/install/examples/ssh-client" ]

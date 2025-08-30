@@ -1,10 +1,15 @@
-FROM alpine:3.16
+# Dockerfile for the TinySSH SSH server
+#
+# Further information can be found at:
+# - https://tinyssh.org/
+# - https://github.com/janmojzis/tinyssh
+
+FROM alpine:3.22.1
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-RUN apk add --no-cache gzip gnupg build-base ucspi-tcp
+RUN apk add --no-cache gzip gnupg build-base ucspi-tcp6
 
 ARG GPG_KEY=D008B0C23D8479E46B9FCB9045DA517496939FF9
-# Use any tagged version from https://github.com/janmojzis/tinyssh/tags here.
-ARG VERSION
+ARG VERSION=20250201
 
 # Download the tinyssh source tarball.
 RUN wget -q "https://github.com/janmojzis/tinyssh/archive/${VERSION}.tar.gz"
@@ -66,5 +71,6 @@ RUN adduser -D "${USERNAME}" && \
 LABEL ssh.implementation.name="tinyssh" \
       ssh.implementation.version="${VERSION}" \
       ssh.implementation.type="server"
+
 CMD ["tcpserver", "-HRDl0", "0.0.0.0", "22", "/usr/sbin/tinysshd", "-v", "/etc/tinyssh/sshkeydir"]
 EXPOSE 22
