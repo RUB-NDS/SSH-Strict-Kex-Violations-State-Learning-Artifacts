@@ -13,6 +13,7 @@
     <ChangePacketLayer to="BINARY_PACKET" />
     <Send>
         <messages>
+            <UserAuthRequestPassword />
             <KeyExchangeInit />
         </messages>
     </Send>
@@ -21,24 +22,7 @@
             <KeyExchangeInit />
         </expectedMessages>
     </Receive>
-    <Send>
-        <messages>
-            <ChannelOpenSession />
-            <!-- For simplicity, we use a plain exec request with default values here -->
-            <ChannelRequestExec />
-        </messages>
-    </Send>
     <DynamicKeyExchange />
-    <Receive>
-        <expectedMessages>
-            <ChannelSuccess />
-            <!-- As the ChannelRequestExec does not contain valid Erlang, we expect a syntax error -->
-            <ChannelExtendedData />
-            <ChannelEof />
-            <ChannelRequestExitStatus />
-            <ChannelClose />
-        </expectedMessages>
-    </Receive>
     <Send>
         <messages>
             <ServiceRequest />

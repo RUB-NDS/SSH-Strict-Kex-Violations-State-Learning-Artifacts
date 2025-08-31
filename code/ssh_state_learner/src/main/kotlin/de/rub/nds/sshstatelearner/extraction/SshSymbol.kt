@@ -115,17 +115,19 @@ enum class SshSymbol(val messageId: UByte?, val messageConstructor: (SshContext?
     MSG_SERVICE_ACCEPT(MessageIdConstant.SSH_MSG_SERVICE_ACCEPT, { ServiceAcceptMessage() }),
     MSG_SERVICE_REQUEST_USERAUTH(MessageIdConstant.SSH_MSG_SERVICE_REQUEST, {
         ServiceRequestMessage().apply {
-            setServiceName(Modifiable.explicit("ssh-userauth"), true)
+            serviceNameLength = Modifiable.explicit(12)
+            serviceName = Modifiable.explicit("ssh-userauth")
         }
     }),
     MSG_SERVICE_REQUEST_CONNECTION(MessageIdConstant.SSH_MSG_SERVICE_REQUEST, {
         ServiceRequestMessage().apply {
-            setServiceName(Modifiable.explicit("ssh-connection"), true)
+            serviceNameLength = Modifiable.explicit(14)
+            serviceName = Modifiable.explicit("ssh-connection")
         }
     }),
     MSG_UNIMPLEMENTED(MessageIdConstant.SSH_MSG_UNIMPLEMENTED, {
         UnimplementedMessage().apply {
-            setSequenceNumber((it?.readSequenceNumber ?: 1) - 1)
+            sequenceNumber = Modifiable.explicit((it?.readSequenceNumber ?: 1) - 1)
         }
     }),
     MSG_VERSION_EXCHANGE(null, { VersionExchangeMessage() }),
@@ -142,12 +144,17 @@ enum class SshSymbol(val messageId: UByte?, val messageConstructor: (SshContext?
     MSG_USERAUTH_REQUEST_HOSTBASED(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, { UserAuthRequestHostbasedMessage() }),
     MSG_USERAUTH_REQUEST_KEYBOARD_INTERACTIVE(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, { UserAuthRequestKeyboardInteractiveMessage() }),
     MSG_USERAUTH_REQUEST_NONE(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, { UserAuthRequestNoneMessage() }),
-    MSG_USERAUTH_REQUEST_PASSWORD(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, { UserAuthRequestPasswordMessage().apply { setPassword(Modifiable.explicit("invalid"), true) } }),
+    MSG_USERAUTH_REQUEST_PASSWORD(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, {
+        UserAuthRequestPasswordMessage().apply {
+            passwordLength = Modifiable.explicit(7)
+            password = Modifiable.explicit("invalid")
+    }}),
     MSG_USERAUTH_REQUEST_PUBLICKEY_HOSTBOUND_OPENSSH(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, { UserAuthRequestPublicKeyHostboundOpenSshMessage() }),
     MSG_USERAUTH_REQUEST_PUBLICKEY(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, { UserAuthRequestPublicKeyMessage() }),
     MSG_USERAUTH_REQUEST_UNKNOWN(MessageIdConstant.SSH_MSG_USERAUTH_REQUEST, {
         UserAuthRequestUnknownMessage().apply {
-            setMethodName(Modifiable.explicit("unknown"), true)
+            methodNameLength = Modifiable.explicit(7)
+            methodName = Modifiable.explicit("unknown")
     }}),
     MSG_USERAUTH_SUCCESS(MessageIdConstant.SSH_MSG_USERAUTH_SUCCESS, { UserAuthSuccessMessage() }),
 
@@ -169,7 +176,8 @@ enum class SshSymbol(val messageId: UByte?, val messageConstructor: (SshContext?
     MSG_CHANNEL_OPEN_TUN_OPENSSH(MessageIdConstant.SSH_MSG_CHANNEL_OPEN, { ChannelOpenTunOpenSshMessage() }),
     MSG_CHANNEL_OPEN_UNKNOWN(MessageIdConstant.SSH_MSG_CHANNEL_OPEN, {
         ChannelOpenUnknownMessage().apply {
-            setChannelType(Modifiable.explicit("unknown"), true)
+            channelTypeLength = Modifiable.explicit(7)
+            channelType = Modifiable.explicit("unknown")
         }
     }),
     MSG_CHANNEL_OPEN_X11(MessageIdConstant.SSH_MSG_CHANNEL_OPEN, { ChannelOpenX11Message() }),
@@ -186,7 +194,8 @@ enum class SshSymbol(val messageId: UByte?, val messageConstructor: (SshContext?
     MSG_CHANNEL_REQUEST_SUBSYSTEM(MessageIdConstant.SSH_MSG_CHANNEL_REQUEST, { ChannelRequestSubsystemMessage() }),
     MSG_CHANNEL_REQUEST_UNKNOWN(MessageIdConstant.SSH_MSG_CHANNEL_REQUEST, {
         ChannelRequestUnknownMessage().apply {
-            setRequestType(Modifiable.explicit("unknown"), true)
+            requestTypeLength = Modifiable.explicit(7)
+            requestType = Modifiable.explicit("unknown")
         }
     }),
     MSG_CHANNEL_REQUEST_WINDOW_CHANGE(MessageIdConstant.SSH_MSG_CHANNEL_REQUEST, { ChannelRequestWindowChangeMessage() }),
@@ -205,7 +214,8 @@ enum class SshSymbol(val messageId: UByte?, val messageConstructor: (SshContext?
     MSG_GLOBAL_REQUEST_TCPIP_FORWARD(MessageIdConstant.SSH_MSG_GLOBAL_REQUEST, { GlobalRequestTcpIpForwardMessage() }),
     MSG_GLOBAL_REQUEST_UNKNOWN(MessageIdConstant.SSH_MSG_GLOBAL_REQUEST, {
         GlobalRequestUnknownMessage().apply {
-            setRequestName(Modifiable.explicit("unknown"), true)
+            requestNameLength = Modifiable.explicit(7)
+            requestName = Modifiable.explicit("unknown")
         }
     }),
 
