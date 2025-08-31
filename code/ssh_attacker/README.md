@@ -51,38 +51,11 @@ $ cd apps
 $ java -jar SSH-Client.jar -connect [host:port]
 ```
 
-or as a server with:
-
-```bash
-$ java -jar SSH-Server.jar -port [port]
-
-```
-
-Furthermore the SSH-Attacker adds a support for a SSH-MITM, by doing two different key exchanges on client and server-side and then forwarding the messages in a proxy manner. This can help SSH developers to get more specific insights into the protocol flow and message structure. The SSH-Mitm can be started like:
-
-```bash
-$ java -jar SSH-Mitm.jar -connect [host:port] -accept [port]
-```
-
-SSH-Attacker also ships with some example attacks on SSH to show you how easy it is to implement an attack with SSH-Attacker.
-You can run those examples with the following command:
-
-```bash
-$ java -jar Attacks.jar [Attack] -connect [host:port]
-```
-
-Although these example applications are very powerful in itself, SSH-Attacker unleashes its full potential when used as a programming library.
-
 ## Code Structure
-
-![Project Structure](/resources/doc/SSH-Attacker-Overview.png?raw=true)
 
 SSH-Attacker consists of several (maven) projects:
 - SSH-Client: A simple, highly configurable SSH client using SSH-Attacker
 - SSH-Core: The protocol stack and heart of SSH-Attacker
-- SSH-Core-OQS: SSH post-quantum crypto support using liboqs
-- SSH-Mitm: A simple man-in-the-middle application for SSH
-- SSH-Server: A simple, highly configurable SSH server using SSH-Attacker
 
 ## Features
 
@@ -92,7 +65,6 @@ Currently, the following features are supported:
 - Supported message types: [Messages](https://github.com/tls-attacker/SSH-Attacker/tree/main/resources/doc/MESSAGES.md ':include')
 - Supported crypto algorithms: [Algorithms](https://github.com/tls-attacker/SSH-Attacker/tree/main/resources/doc/ALGORITHMS.md ':include')
 - Some extensions (proprietary and RFC8308)
-- Client, Server, and MitM
 
 ## Usage
 
@@ -151,7 +123,7 @@ $ java -jar apps/SSH-Client.jar -connect [host]:[port] -workflow_input resources
 
 ## Dockerfile
 
-Additionally we provide a docker image, located in `SSH-Attacker/Dockerfile`, which can be used to run the different SSH-Attacker modules directly in a container. When running the image use the --target [ssh-client, ssh-server, ssh-mitm, attacks]docker flag to specify which module should be executed as entrypoint in the docker container.
+Additionally we provide a docker image, located in `SSH-Attacker/Dockerfile`, which can be used to run the different SSH-Attacker modules directly in a container.
 
 ## Modifiable Variables
 
