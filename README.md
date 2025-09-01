@@ -9,7 +9,7 @@ Computer and Communications Security (CCS) 2025.
 ### Hardware Requirements
 
 We recommend running these artifacts on a machine with at least 8 CPU cores
-available. Running the artifacts on a machine with less CPU cores available
+available. Running the artifacts on a machine with fewer CPU cores available
 may slow down learning times and can cause unexpected results.
 
 Our experiments were conducted on a desktop computer with an Intel i9-12900KF
@@ -17,7 +17,7 @@ Our experiments were conducted on a desktop computer with an Intel i9-12900KF
 
 ### Software Requirements
 
-- An operating system with the `bash` shell installed (e.g. Ubuntu 24.04).
+- An operating system with the `bash` shell installed (e.g., Ubuntu 24.04).
   Required for running the experiments only, the artifacts itself are platform
   independent through the use of Docker images. We used GNU bash version 5.2.21.
 - Docker 28.3.3 or newer. Refer to the official [Docker Docs](https://docs.docker.com/engine/install/)
