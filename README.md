@@ -10,7 +10,9 @@ Computer and Communications Security (CCS) 2025.
 
 We recommend running these artifacts on a machine with at least 8 CPU cores
 available. Running the artifacts on a machine with fewer CPU cores available
-may slow down learning times and can cause unexpected results.
+may slow down learning times and can cause unexpected results. To account for
+Docker images and the resulting state machines, make sure you have at least
+10 GB of disk space available.
 
 Our experiments were conducted on a desktop computer with an Intel i9-12900KF
 16-core processor and 64 GB of RAM.
