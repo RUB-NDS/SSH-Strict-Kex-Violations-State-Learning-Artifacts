@@ -1,5 +1,7 @@
 # Finding SSH Strict Key Exchange Violations by State Learning - Artifacts
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17021720.svg)](https://doi.org/10.5281/zenodo.17021720)
+
 This repository contains the artifacts for the paper "Finding SSH Strict Key
 Exchange Violations by State Learning", accepted at the ACM Conference on
 Computer and Communications Security (CCS) 2025.
