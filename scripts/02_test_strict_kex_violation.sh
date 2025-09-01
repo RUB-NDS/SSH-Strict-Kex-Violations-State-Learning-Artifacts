@@ -134,7 +134,8 @@ function start_server() {
     log "    - Server running at $SERVER_HOST:$SERVER_PORT"
 }
 
-function stop_servers() {
+function stop_containers() {
+    docker ps -q --filter "name=ssh-attacker" | xargs -r docker stop |& tee -a $LOG_FILE
     if [[ $IS_DOCKERIZED_SERVER != true ]]; then
         return
     fi
@@ -150,6 +151,7 @@ function run_ssh_client() {
         -v "$POC_WORKFLOW_TRACE":/trace.xml \
         -v "$POC_CONFIG":/config.xml \
         --network host \
+        --name ssh-attacker \
         ssh-attacker:latest \
         -connect "$SERVER_HOST:$SERVER_PORT" \
         -config /config.xml \
@@ -159,6 +161,6 @@ function run_ssh_client() {
 }
 
 select_violation
-trap 'stop_servers' EXIT
+trap 'stop_containers' EXIT
 start_server
 run_ssh_client

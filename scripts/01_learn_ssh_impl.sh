@@ -151,7 +151,8 @@ function start_servers() {
     esac
 }
 
-function stop_servers() {
+function stop_containers() {
+    docker ps -q --filter "name=ssh-state-learner" | xargs -r docker stop |& tee -a $LOG_FILE
     if [[ $IS_DOCKERIZED_SERVER != true ]]; then
         return
     fi
@@ -199,6 +200,7 @@ function learn_ssh_impl() {
             timeout 1h docker run --rm \
                 -v "$RESULTS_DIR:/results" \
                 --network host \
+                --name ssh-state-learner \
                 ssh-state-learner:latest \
                 "${COMMON_OPTIONS[@]}" |& tee -a $LOG_FILE
             ;;
@@ -207,6 +209,7 @@ function learn_ssh_impl() {
             timeout 1h docker run --rm \
                 -v "$RESULTS_DIR:/results" \
                 --network host \
+                --name ssh-state-learner \
                 ssh-state-learner:latest \
                 "${COMMON_OPTIONS[@]}" \
                 --disable-rekex |& tee -a $LOG_FILE
@@ -216,7 +219,7 @@ function learn_ssh_impl() {
 
 choose_sul_impl
 choose_kex_flow_type
-trap 'stop_servers' EXIT
+trap 'stop_containers' EXIT
 start_servers
 ask_retrieve_delay
 create_results_dir

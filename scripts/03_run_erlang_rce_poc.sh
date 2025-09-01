@@ -40,6 +40,7 @@ function run_poc() {
     docker run --rm \
         -v "$POC_WORKFLOW_TRACE":/trace.xml \
         --network host \
+        --name ssh-attacker \
         ssh-attacker:latest \
         -connect "$SERVER_HOST:$SERVER_PORT" \
         -workflow_input /trace.xml |& tee -a $LOG_FILE
@@ -47,13 +48,14 @@ function run_poc() {
     log "    - If the PoC was successful, you should see that the workflow trace was executed as planned in the tool's last output line."
 }
 
-function stop_erlang_ssh() {
+function stop_containers() {
+    docker ps -q --filter "name=ssh-attacker" | xargs -r docker stop |& tee -a $LOG_FILE
     log "${GREEN}[+] Stopping Erlang SSH server...${NC}"
     cd "$ARTIFACTS_DIR/code/impl/erlang-ssh"
     docker compose down |& tee -a $LOG_FILE
     cd "$ARTIFACTS_DIR"
 }
 
-trap 'stop_erlang_ssh' EXIT
+trap 'stop_containers' EXIT
 start_erlang_ssh
 run_poc
