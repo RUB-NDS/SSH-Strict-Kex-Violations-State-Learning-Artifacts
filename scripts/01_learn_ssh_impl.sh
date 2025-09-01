@@ -120,8 +120,8 @@ function start_servers() {
         "asyncssh"|"dropbear"|"erlang-ssh"|"golang"|"libssh"|"openssh"|"tinyssh")
             IS_DOCKERIZED_SERVER=true
             cd "$ARTIFACTS_DIR/code/impl/$SSH_IMPL"
-            docker-compose up -d --scale server=16 |& tee -a $LOG_FILE
-            SERVER_HOST="host.docker.internal"
+            docker compose up -d --scale server=16 |& tee -a $LOG_FILE
+            SERVER_HOST="127.0.0.1"
             SERVER_PORT="30020-30035"
             cd "$ARTIFACTS_DIR"
             ;;
@@ -157,7 +157,7 @@ function stop_servers() {
     fi
     log "${GREEN}[+] Stopping $SSH_IMPL servers...${NC}"
     cd "$ARTIFACTS_DIR/code/impl/$SSH_IMPL"
-    docker-compose down |& tee -a $LOG_FILE
+    docker compose down |& tee -a $LOG_FILE
     cd "$ARTIFACTS_DIR"
 }
 
@@ -198,6 +198,7 @@ function learn_ssh_impl() {
         "asyncssh"|"dropbear"|"erlang-ssh"|"golang"|"libssh"|"openssh"|"tinyssh"|"lancom-lcos"|"tectia-ssh")
             timeout 1h docker run --rm \
                 -v "$RESULTS_DIR:/results" \
+                --network host \
                 ssh-state-learner:latest \
                 "${COMMON_OPTIONS[@]}" |& tee -a $LOG_FILE
             ;;
@@ -205,6 +206,7 @@ function learn_ssh_impl() {
             # Disable rekex to avoid combinatorial explosion of states due to message buffering during rekex
             timeout 1h docker run --rm \
                 -v "$RESULTS_DIR:/results" \
+                --network host \
                 ssh-state-learner:latest \
                 "${COMMON_OPTIONS[@]}" \
                 --disable-rekex |& tee -a $LOG_FILE

@@ -26,9 +26,9 @@ fi
 function start_erlang_ssh() {
     log "${GREEN}[+] Starting Erlang SSH server...${NC}"
     cd "$ARTIFACTS_DIR/code/impl/erlang-ssh"
-    docker-compose up -d |& tee -a $LOG_FILE
-    SERVER_HOST="host.docker.internal"
-    SERVER_PORT=$(docker-compose port server 22 | awk -F: '{print $2}')
+    docker compose up -d |& tee -a $LOG_FILE
+    SERVER_HOST="127.0.0.1"
+    SERVER_PORT=$(docker compose port server 22 | awk -F: '{print $2}')
     cd "$ARTIFACTS_DIR"
 }
 
@@ -39,6 +39,7 @@ function run_poc() {
     log "    - Workflow trace: $POC_WORKFLOW_TRACE"
     docker run --rm \
         -v "$POC_WORKFLOW_TRACE":/trace.xml \
+        --network host \
         ssh-attacker:latest \
         -connect "$SERVER_HOST:$SERVER_PORT" \
         -workflow_input /trace.xml |& tee -a $LOG_FILE
@@ -49,7 +50,7 @@ function run_poc() {
 function stop_erlang_ssh() {
     log "${GREEN}[+] Stopping Erlang SSH server...${NC}"
     cd "$ARTIFACTS_DIR/code/impl/erlang-ssh"
-    docker-compose down |& tee -a $LOG_FILE
+    docker compose down |& tee -a $LOG_FILE
     cd "$ARTIFACTS_DIR"
 }
 

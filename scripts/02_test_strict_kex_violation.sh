@@ -109,8 +109,8 @@ function start_server() {
         "asyncssh"|"dropbear"|"erlang-ssh"|"libssh"|"tinyssh")
             IS_DOCKERIZED_SERVER=true
             cd "$ARTIFACTS_DIR/code/impl/$SSH_IMPL"
-            docker-compose up -d |& tee -a $LOG_FILE
-            SERVER_HOST="host.docker.internal"
+            docker compose up -d |& tee -a $LOG_FILE
+            SERVER_HOST="127.0.0.1"
             SERVER_PORT=$(docker compose port server 22 | awk -F: '{print $2}')
             cd "$ARTIFACTS_DIR"
             ;;
@@ -140,7 +140,7 @@ function stop_servers() {
     fi
     log "${GREEN}[+] Stopping $SSH_IMPL server...${NC}"
     cd "$ARTIFACTS_DIR/code/impl/$SSH_IMPL"
-    docker-compose down |& tee -a $LOG_FILE
+    docker compose down |& tee -a $LOG_FILE
     cd "$ARTIFACTS_DIR"
 }
 
@@ -149,6 +149,7 @@ function run_ssh_client() {
     docker run --rm \
         -v "$POC_WORKFLOW_TRACE":/trace.xml \
         -v "$POC_CONFIG":/config.xml \
+        --network host \
         ssh-attacker:latest \
         -connect "$SERVER_HOST:$SERVER_PORT" \
         -config /config.xml \
