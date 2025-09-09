@@ -159,6 +159,6 @@ contained a syntax error, indicative of a successful remote code execution.
 │   ├── 01_learn_ssh_impl.sh            # Runs the key_scraper tool on GitHub, Gitlab, and Launchpad for 24 hours
 │   ├── 02_test_strict_kex_violation.sh # Performs a full run of the evaluation pipeline on the keys collected by the key_scraper tool
 │   └── 03_run_erlang_rce_poc.sh        # Generates test keys for testing public key upload restrictions
-├── supp_material                       # Contains additional material that did not make it into the final version of the paper but may be of interested
+├── supp_material                       # Contains additional material that did not make it into the final version of the paper but may be of interest
 └── README.md
 ```
