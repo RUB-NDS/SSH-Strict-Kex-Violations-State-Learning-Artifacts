@@ -1,0 +1,144 @@
+\documentclass[sigconf,nonacm]{acmart}
+
+\usepackage{fontawesome5}
+\usepackage{makecell}
+\usepackage{placeins}
+
+\newcommand{\supported}{\faCircle}
+\newcommand{\partialsupport}{\faAdjust}
+\newcommand{\unsupported}{\faCircle[regular]}
+\newcommand{\statMsg}{S}
+\newcommand{\cryptoMsg}{C}
+\newcommand{\varMsg}{V}
+
+\begin{document}
+
+\begin{table*}
+    \caption*{Transport layer and authentication protocol learning symbols used by the learner. For each symbol, the table lists the name of the symbol without the \texttt{MSG\_} prefix, the specification name without the \texttt{SSH\_MSG\_} prefix, the message ID for the corresponding message type, a reference to the relevant section of the specification, the message class, whether the message is sent by client or server, and additional notes such as the service or authentication method name included in the message. The different message classes are described in Section 3.3 of the paper, referred to as \emph{S} for static, \emph{C} for cryptographic, and \emph{V} for variable messages.}
+    \centering
+    \small
+    \begin{tabular}{llrlcccl}
+        \toprule
+        ~ & ~ & ~ & ~ & ~ & \multicolumn{2}{c}{Send by} \\ \cmidrule{6-7}
+        Symbol &  Message Type & ID & Reference & Class & C & S & Note \\
+        \midrule
+        \verb|DEBUG| & \verb|DEBUG| & 4 & \cite[Section 11.3]{rfc4253} & \varMsg & \supported & \supported \\
+        \verb|DISCONNECT| & \verb|DISCONNECT| & 1 & \cite[Section 11.1]{rfc4253} & \varMsg & \supported & \supported \\
+        \verb|EXT_INFO| & \verb|EXT_INFO| & 7 & \cite[Section 2.3]{rfc8308} & \varMsg & \supported & \supported \\
+        \verb|IGNORE| & \verb|IGNORE| & 2 & \cite[Section 11.2]{rfc4253} & \varMsg & \supported & \supported \\
+        \verb|KEX_DH_GEX_GROUP| & \verb|KEX_DH_GEX_GROUP| & 31 & \cite[Section 3]{rfc4419} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEX_DH_GEX_INIT| & \verb|KEX_DH_GEX_INIT| & 32 & \cite[Section 3]{rfc4419} & \cryptoMsg & \supported & \unsupported \\
+        \verb|KEX_DH_GEX_OLD_REQUEST| & \verb|KEX_DH_GEX_REQUEST_OLD| & 30 & \cite[Section 5]{rfc4419} & \varMsg & \supported & \unsupported \\
+        \verb|KEX_DH_GEX_REPLY| & \verb|KEX_DH_GEX_REPLY| & 33 & \cite[Section 3]{rfc4419} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEX_DH_GEX_REQUEST| & \verb|KEX_DH_GEX_REQUEST| & 34 & \cite[Section 3]{rfc4419} & \varMsg & \supported & \unsupported \\
+        \verb|KEX_ECDH_INIT| & \verb|KEX_ECDH_INIT| & 30 & \cite[Section 4]{rfc5656} & \cryptoMsg & \supported & \unsupported \\
+        \verb|KEX_ECDH_REPLY| & \verb|KEX_ECDH_REPLY| & 31 & \cite[Section 4]{rfc5656} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEX_HBR_INIT| & \verb|KEX_HYBRID_INIT| & 30 & \cite[Section 2.1]{ietf-sshm-mlkem-hybrid-kex-00} & \cryptoMsg & \supported & \unsupported \\
+        \verb|KEX_HBR_REPLY| & \verb|KEX_HYBRID_REPLY| & 31 & \cite[Section 2.1]{ietf-sshm-mlkem-hybrid-kex-00} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEX_RSA_DONE| & \verb|KEXRSA_DONE| & 32 & \cite[Section 4]{rfc4432} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEX_RSA_PUBKEY| & \verb|KEXRSA_PUBKEY| & 30 & \cite[Section 4]{rfc4432} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEX_RSA_SECRET| & \verb|KEXRSA_SECRET| & 31 & \cite[Section 4]{rfc4432} & \cryptoMsg & \supported & \unsupported \\
+        \verb|KEXDH_INIT| & \verb|KEXDH_INIT| & 30 & \cite[Section 8]{rfc4253} & \cryptoMsg & \supported & \unsupported \\
+        \verb|KEXDH_REPLY| & \verb|KEXDH_REPLY| & 31 & \cite[Section 8]{rfc4253} & \cryptoMsg & \unsupported & \supported \\
+        \verb|KEXINIT| & \verb|KEXINIT| & 20 & \cite[Section 7.1]{rfc4253} & \varMsg & \supported & \supported \\
+        \verb|NEWCOMPRESS| & \verb|NEWCOMPRESS| & 8 & \cite[Section 3.2]{rfc8308} & \statMsg & \supported & \unsupported \\
+        \verb|NEWKEYS| & \verb|NEWKEYS| & 21 & \cite[Section 7.3]{rfc4253} & \statMsg & \supported & \supported \\
+        \verb|PING_OPENSSH| & \verb|PING| & 192 & \cite[Section 1.9]{protocolopenssh} & \varMsg & \supported & \partialsupport & Vendor extension \\
+        \verb|PONG_OPENSSH|  & \verb|PONG| & 193 & \cite[Section 1.9]{protocolopenssh} & \varMsg & \partialsupport & \supported & Vendor extension \\
+        \verb|SERVICE_ACCEPT| & \verb|SERVICE_ACCEPT| & 6 & \cite[Section 10]{rfc4253} & \varMsg & \unsupported & \supported \\
+        \verb|SERVICE_REQUEST_CONNECTION| & \verb|SERVICE_REQUEST| & 5 & \cite[Section 10]{rfc4253} & \statMsg & \supported & \unsupported & Service \texttt{ssh-connection} \\
+        \verb|SERVICE_REQUEST_USERAUTH| & \verb|SERVICE_REQUEST| & 5 & \cite[Section 10]{rfc4253} & \statMsg & \supported & \unsupported & Service \texttt{ssh-userauth} \\
+        \verb|UNIMPLEMENTED| & \verb|UNIMPLEMENTED| & 3 & \cite[Section 11.4]{rfc4253} & \varMsg & \supported & \supported \\
+        \verb|UNKNOWN_ID_ALGORITHM_NEGOTIATION| & \textit{n/a} & 22 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|UNKNOWN_ID_KEY_EXCHANGE_SPECIFIC| & \textit{n/a} & 49 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|UNKNOWN_ID_RESERVED_0| & \textit{n/a} & 0 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|UNKNOWN_ID_TRANSPORT_GENERIC| & \textit{n/a} & 9 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|VERSION_EXCHANGE| & \textit{n/a} & \textit{n/a} & \cite[Section 4.2]{rfc4253} & \varMsg & \supported & \supported & As binary packet \\
+        \midrule
+        \verb|UNKNOWN_ID_USERAUTH_GENERIC| & \textit{n/a} & 54 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only  \\
+        \verb|UNKNOWN_ID_USERAUTH_SPECIFIC| & \textit{n/a} & 79 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|USERAUTH_USERAUTH_BANNER| & \verb|USERAUTH_BANNER| & 53 & \cite[Section 5.4]{rfc4252} & \varMsg & \unsupported & \supported \\
+        \verb|USERAUTH_FAILURE| & \verb|USERAUTH_FAILURE| & 51 & \cite[Section 5.1]{rfc4252} & \varMsg & \unsupported & \supported \\
+        \verb|USERAUTH_INFO_REQUEST| & \verb|USERAUTH_INFO_REQUEST| & 60 & \cite[Section 3.2]{rfc4256} & \varMsg & \unsupported & \supported \\
+        \verb|USERAUTH_INFO_RESPONSE| & \verb|USERAUTH_INFO_RESPONSE| & 61 & \cite[Section 3.4]{rfc4256} & \varMsg & \supported & \unsupported \\
+        \verb|USERAUTH_PASSWD_CHANGEREQ| & \makecell[l]{\scalebox{.8}[1.0]{\texttt{USERAUTH\_PASSWD\_CHANGEREQ}}} & 60 & \cite[Section 8]{rfc4252} & \varMsg & \unsupported & \supported  \\
+        \verb|USERAUTH_PK_OK| & \verb|USERAUTH_PK_OK| & 60 & \cite[Section 7]{rfc4252} & \cryptoMsg & \unsupported & \supported \\
+        \verb|USERAUTH_REQUEST_HOSTBASED| & \verb|USERAUTH_REQUEST| & 50 & \cite[Section 9]{rfc4252} & \cryptoMsg & \supported & \unsupported & Method \texttt{hostbased} \\
+        \makecell[l]{\scalebox{.8}[1.0]{\texttt{USERAUTH\_REQUEST\_KEYBOARD\_INTERACTIVE}}} & \verb|USERAUTH_REQUEST| & 50 & \cite[Section 3.1]{rfc4256} & \varMsg & \supported & \unsupported & Method \texttt{keyboard-interactive} \\
+        \verb|USERAUTH_REQUEST_NONE| & \verb|USERAUTH_REQUEST| & 50 & \cite[Section 5.2]{rfc4252} & \varMsg & \supported & \unsupported & Method \texttt{none} \\
+        \verb|USERAUTH_REQUEST_PASSWORD| & \verb|USERAUTH_REQUEST| & 50 & \cite[Section 8]{rfc4252} & \varMsg & \supported & \unsupported & Method \texttt{password} \\
+        \verb|USERAUTH_REQUEST_PUBLICKEY| & \verb|USERAUTH_REQUEST| & 50 & \cite[Section 7]{rfc4252} & \cryptoMsg & \supported & \unsupported & Method \texttt{publickey} \\
+        \makecell[l]{\scalebox{.67}[1.0]{\texttt{USERAUTH\_REQUEST\_PUBLICKEY\_HOSTBOUND\_OPENSSH}}} & \verb|USERAUTH_REQUEST| & 50 & \cite[Section 3.1]{protocolopenssh} & \cryptoMsg & \supported & \unsupported & \makecell[l]{\scalebox{.9 }[1.0]{Method \texttt{publickey-hostbound-v00@}}} \\
+        \verb|USERAUTH_REQUEST_UNKNOWN| & \verb|USERAUTH_REQUEST| & 50 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Method \texttt{unknown} \\
+        \verb|USERAUTH_SUCCESS| & \verb|USERAUTH_SUCCESS| & 52 & \cite[Section 5.1]{rfc4252} & \statMsg & \unsupported & \supported \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+\begin{table*}
+    \caption*{Connection protocol learning symbols used by the learner. For each symbol, the table lists the name of the symbol without the \texttt{MSG\_} prefix, the specification name without the \texttt{SSH\_MSG\_} prefix, the message ID for the corresponding message type, a reference to the relevant section of the specification, the message class, whether the message is sent by client or server, and additional notes such as channel or request type of the message. A half-filled circle (\partialsupport) indicates that the specification discourages, but does not disallow, the message direction in question. The different message classes are described in Section 3.3 of the paper, referred to as \emph{S} for static, \emph{C} for cryptographic, and \emph{V} for variable messages.}
+    \centering
+    \small
+    \begin{tabular}{llrlcccl}
+         \toprule
+        ~ & ~ & ~ & ~ & ~ & \multicolumn{2}{c}{Send by} \\ \cmidrule{6-7}
+        Symbol & Message Type & ID & Reference & Class & C & S & Note \\
+        \midrule
+        \verb|CHANNEL_CLOSE| & \verb|CHANNEL_CLOSE| & 97 & \cite[Section 5.3]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_DATA| & \verb|CHANNEL_DATA| & 94 & \cite[Section 5.2]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_EOF| & \verb|CHANNEL_EOF| & 96 & \cite[Section 5.3]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_EXTENDED_DATA| &\makecell[l]{\scalebox{.95}[1.0]{\texttt{CHANNEL\_EXTENDED\_DATA}}} & 95 & \cite[Section 5.2]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_FAILURE| & \verb|CHANNEL_FAILURE| & 100 & \cite[Section 5.4]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_OPEN_CONFIRMATION| & \makecell[l]{\scalebox{.8}[1.0]{\texttt{CHANNEL\_OPEN\_CONFIRMATION}}} & 91 & \cite[Section 5.4]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_OPEN_DIRECT_STREAMLOCAL_OPENSSH| & \verb|CHANNEL_OPEN| & 90 & \cite[Section 2.4]{protocolopenssh} & \varMsg & \supported & \unsupported & \verb|direct-streamlocal@|  \\
+        \verb|CHANNEL_OPEN_DIRECT_TCPIP| & \verb|CHANNEL_OPEN| & 90 & \cite[Section 7.2]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|direct-tcpip| \\
+        \verb|CHANNEL_OPEN_FAILURE|  & \verb|CHANNEL_OPEN_FAILURE| & 92 & \cite[Section 5.1]{rfc4254} & \varMsg & \supported & \supported \\
+        \makecell[l]{\scalebox{.9}[1.0]{\texttt{CHANNEL\_OPEN\_FORWARDED\_STREAMLOCAL\_OPENSSH}}} & \verb|CHANNEL_OPEN| & 90 & \cite[Section 2.4]{protocolopenssh} & \varMsg & \unsupported & \supported & \verb|forwarded-streamlocal@| \\
+        \verb|CHANNEL_OPEN_FORWARDED_TCPIP| & \verb|CHANNEL_OPEN| & 90 & \cite[Section 7.2]{rfc4254} & \varMsg & \supported & \supported & \verb|forwarded-tcpip| \\
+        \verb|CHANNEL_OPEN_SESSION| & \verb|CHANNEL_OPEN| & 90 & \cite[Section 6.1]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|session| \\
+        \verb|CHANNEL_OPEN_TUN_OPENSSH| & \verb|CHANNEL_OPEN| & 90 & \cite[Section 2.3]{protocolopenssh} & \varMsg & \supported & \unsupported & \verb|tun@| \\
+        \verb|CHANNEL_OPEN_UNKNOWN| & \verb|CHANNEL_OPEN|& 90 & \textit{n/a} & \varMsg & \unsupported & \unsupported & \verb|unknown| \\
+        \verb|CHANNEL_OPEN_X11| & \verb|CHANNEL_OPEN| & 90 & \cite[Section 6.3.2]{rfc4254} & \varMsg & \supported & \supported & \verb|x11| \\
+        \verb|CHANNEL_REQUEST_AUTH_AGENT_OPENSSH| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 4.2]{ietf-sshm-ssh-agent-02} & \varMsg & \supported & \unsupported & \verb|auth-agent-req@| \\
+        \verb|CHANNEL_REQUEST_BREAK| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 3]{rfc4335} & \varMsg & \supported & \unsupported & \verb|break|  \\
+        \verb|CHANNEL_REQUEST_ENV| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.4]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|env| \\
+        \verb|CHANNEL_REQUEST_EOW_OPENSSH| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 2.1]{protocolopenssh} & \varMsg & \supported & \supported & \verb|eow@| \\
+        \verb|CHANNEL_REQUEST_EXEC| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.5]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|exec| \\
+        \verb|CHANNEL_REQUEST_EXIT_SIGNAL| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.10]{rfc4254} & \varMsg & \partialsupport & \supported & \verb|exit-signal| \\
+        \verb|CHANNEL_REQUEST_EXIT_STATUS| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.10]{rfc4254} & \varMsg & \partialsupport & \supported & \verb|exit-status| \\
+        \verb|CHANNEL_REQUEST_PTY_REQ| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.2]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|pty-req| \\
+        \verb|CHANNEL_REQUEST_SHELL| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.5]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|shell| \\
+        \verb|CHANNEL_REQUEST_SIGNAL| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.9]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|signal| \\
+        \verb|CHANNEL_REQUEST_SUBSYSTEM| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.5]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|subsystem| \\
+        \verb|CHANNEL_REQUEST_UNKNOWN| & \verb|CHANNEL_REQUEST| & 98 & \textit{n/a} & \varMsg & \unsupported & \unsupported & \verb|unknown| \\
+        \verb|CHANNEL_REQUEST_WINDOW_CHANGE| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.7]{rfc4254} & \varMsg & \supported & \unsupported & \verb|window-change| \\
+        \verb|CHANNEL_REQUEST_X11_REQ| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.3.1]{rfc4254} & \varMsg & \supported & \supported & \verb|x11-req| \\
+        \verb|CHANNEL_REQUEST_XON_XOFF| & \verb|CHANNEL_REQUEST| & 98 & \cite[Section 6.8]{rfc4254} & \varMsg & \unsupported & \supported & \verb|xon-xoff| \\
+        \verb|CHANNEL_SUCCESS| & \verb|CHANNEL_SUCCESS| & 99 & \cite[Section 5.4]{rfc4254} & \varMsg & \supported & \supported \\
+        \verb|CHANNEL_WINDOW_ADJUST| & \makecell[l]{\scalebox{.95}[1.0]{\texttt{CHANNEL\_WINDOW\_ADJUST}}} & 93 & \cite[Section 5.2]{rfc4254} & \varMsg & \supported & \supported \\
+        \makecell[l]{\scalebox{.8}[1.0]{\texttt{GLOBAL\_REQUEST\_CANCEL\_STREAMLOCAL\_FORWARD\_OPENSSH}}} & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 2.4]{protocolopenssh} & \varMsg & \supported & \unsupported & \makecell[l]{\scalebox{.8}[1.0]{\texttt{cancel-streamlocal-forward@}}} \\
+        \verb|GLOBAL_REQUEST_CANCEL_TCPIP_FORWARD| & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 7.1]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|cancel-tcpip-forwarded| \\
+        \verb|GLOBAL_REQUEST_HOSTKEYS_OPENSSH| & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 2.5]{protocolopenssh} & \cryptoMsg & \unsupported & \supported & \verb|hostkeys-00@| \\
+        \verb|GLOBAL_REQUEST_HOSTKEYS_PROVE_OPENSSH| & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 2.5]{protocolopenssh} & \cryptoMsg & \supported & \unsupported & \verb|hostkeys-prove-00@| \\
+        \verb|GLOBAL_REQUEST_NO_MORE_SESSIONS_OPENSSH| & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 2.2]{protocolopenssh} & \varMsg & \supported & \unsupported & \verb|no-more-sessions@| \\
+        \makecell[l]{\scalebox{.9}[1.0]{\texttt{GLOBAL\_REQUEST\_STREAMLOCAL\_FORWARD\_OPENSSH}}} & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 2.4]{protocolopenssh} & \varMsg & \supported & \unsupported & \verb|streamlocal-forward@| \\
+        \verb|GLOBAL_REQUEST_TCPIP_FORWARD| & \verb|GLOBAL_REQUEST| & 80 & \cite[Section 7.1]{rfc4254} & \varMsg & \supported & \partialsupport & \verb|tcpip-forward| \\
+        \verb|GLOBAL_REQUEST_UNKNOWN| & \verb|GLOBAL_REQUEST| & 80 & \textit{n/a} & \statMsg & \unsupported & \unsupported & \verb|unknown| \\
+        \verb|REQUEST_FAILURE| & \verb|REQUEST_FAILURE| & 82 & \cite[Section 4]{rfc4254} & \statMsg & \supported & \supported \\
+        \verb|REQUEST_SUCCESS| & \verb|REQUEST_SUCCESS| & 81 & \cite[Section 4]{rfc4254} & \statMsg & \supported & \supported \\
+        \verb|UNKNOWN_ID_CHANNEL_RELATED| & \textit{n/a} & 101 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|UNKNOWN_ID_CONNECTION_GENERIC| & \textit{n/a} & 83 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|UNKNOWN_ID_RESERVED_CLIENT| & \textit{n/a} & 128 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \verb|UNKNOWN_ID_RESERVED_PRIVATE| & \textit{n/a} & 192 & \textit{n/a} & \statMsg & \unsupported & \unsupported & Message ID only \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+
+\FloatBarrier
+\title{}
+\maketitle
+\bibliographystyle{ACM-Reference-Format}
+\balance
+\bibliography{literature}
+
+\end{document}
+\endinput

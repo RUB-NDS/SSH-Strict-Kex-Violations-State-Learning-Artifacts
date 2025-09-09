@@ -1,0 +1,96 @@
+\documentclass[sigconf,nonacm]{acmart}
+
+\usepackage{multicol}
+
+\begin{document}
+
+\begin{table*}[h]
+    \centering
+    \caption{Resulting algorithm choices for state learning with each implementation based on the algorithm lists. Key exchange algorithms are configured separately and therefore not included in this table. The choice of algorithms is used symmetrically for both connection directions. An \textit{<implicit>} MAC algorithm denotes that an AEAD encryption algorithm is used and no separate MAC algorithm is negotiated.}
+    \label{tab}
+    \begin{tabular}{lllll}
+        \toprule
+        Implementation & Host Key & Encryption & MAC & Compression \\
+        \midrule
+        AsyncSSH & \texttt{rsa-sha2-512} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        Bitvise SSH & \texttt{ecdsa-sha2-nistp384} & \texttt{aes128-ctr} & \texttt{hmac-sha2-256} & \texttt{none} \\
+        Dropbear & \texttt{ecdsa-sha2-nistp256} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        Erlang SSH & \texttt{ecdsa-sha2-nistp256} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        Golang x/crypto/ssh & \texttt{ecdsa-sha2-nistp256} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        LANCOM LCOS & \texttt{ecdsa-sha2-nistp256} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        libssh & \texttt{ecdsa-sha2-nistp256} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        OpenSSH & \texttt{ecdsa-sha2-nistp256} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        Tectia SSH & \texttt{rsa-sha2-512} & \texttt{aes128-ctr} & \texttt{hmac-sha2-256} & \texttt{none} \\
+        TinySSH & \texttt{ssh-ed25519} & \texttt{chacha20-poly1305@openssh.com} & \textit{<implicit>} & \texttt{none} \\
+        \bottomrule 
+    \end{tabular}
+\end{table*}
+
+We distinguish different protocol flows inside the transport layer protocol based on the key exchange flow type, assuming that different algorithms of the same flow type do not influence the resulting state machine. We, therefore, select one algorithm of each flow type for evaluation. The mapping between flow type and key exchange algorithm is listed below. For TinySSH, we use \texttt{curve25519-sha256} as the ECDH algorithm because of the lack of support for the NIST P-256 curve. For all evaluation runs, the key exchange algorithm list consists of the key exchange algorithm and the strict kex identifier.
+
+\begin{itemize}
+    \item DH: \texttt{diffie-hellman-group14-sha256}
+    \item DHGEX: \texttt{diffie-hellman-group-exchange-sha256}
+    \item ECDH: \texttt{ecdh-sha2-nistp256}
+    \item RSA: \texttt{rsa2048-sha256}
+    \item PQ-Hybrid: \texttt{sntrup761x25519-sha512@openssh.com}
+\end{itemize}
+
+We use reasonable defaults for all other algorithm lists based on OpenSSH 9.9p2. Compression is disabled (\texttt{none}). The algorithm lists are given in order of preference below. The SSH protocol chooses the first algorithm from the client's list, which is also supported by the server. %Encryption and MAC algorithms are set symmetrically for both connection directions.
+This results in the algorithm choices listed in \autoref{tab} for the evaluated server implementations.
+
+\begin{multicols}{2}
+
+\raggedcolumns
+
+\paragraph{Host key algorithms}
+
+\begin{itemize}
+    \item \texttt{ecdsa-sha2-nistp256-cert-v01@openssh.com}
+    \item \texttt{ecdsa-sha2-nistp384-cert-v01@openssh.com}
+    \item \texttt{ecdsa-sha2-nistp521-cert-v01@openssh.com}
+    \item \texttt{ssh-ed25519-cert-v01@openssh.com}
+    \item \texttt{rsa-sha2-512-cert-v01@openssh.com}
+    \item \texttt{rsa-sha2-256-cert-v01@openssh.com}
+    \item \texttt{ssh-rsa-cert-v01@openssh.com}
+    \item \texttt{ecdsa-sha2-nistp256}
+    \item \texttt{ecdsa-sha2-nistp384}
+    \item \texttt{ecdsa-sha2-nistp521}
+    \item \texttt{ssh-ed25519}
+    \item \texttt{rsa-sha2-512}
+    \item \texttt{rsa-sha2-256}
+    \item \texttt{ssh-rsa}
+\end{itemize}
+
+\paragraph{Encryption algorithms}
+
+\begin{itemize}
+    \item \texttt{chacha20-poly1305@openssh.com}
+    \item \texttt{aes128-ctr}
+    \item \texttt{aes192-ctr}
+    \item \texttt{aes256-ctr}
+    \item \texttt{aes128-gcm@openssh.com}
+    \item \texttt{aes256-gcm@openssh.com}
+\end{itemize}
+
+\columnbreak
+
+\paragraph{MAC algorithms}
+
+\begin{itemize}
+    \item \texttt{umac-64-etm@openssh.com}
+    \item \texttt{umac-128-etm@openssh.com}
+    \item \texttt{hmac-sha2-256-etm@openssh.com}
+    \item \texttt{hmac-sha2-512-etm@openssh.com}
+    \item \texttt{hmac-sha1-etm@openssh.com}
+    \item \texttt{umac-64@openssh.com}
+    \item \texttt{umac-128@openssh.com}
+    \item \texttt{hmac-sha2-256}
+    \item \texttt{hmac-sha2-512}
+    \item \texttt{hmac-sha1}
+\end{itemize}
+
+\end{multicols}
+
+\end{document}
+\endinput
