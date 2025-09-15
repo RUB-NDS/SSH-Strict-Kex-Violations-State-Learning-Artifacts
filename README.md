@@ -149,7 +149,8 @@ contained a syntax error, indicative of a successful remote code execution.
 │   ├── impl                            # Dockerfiles and docker-compose.yml files for SSH servers running on Linux
 │   ├── pocs                            # Proof-of-concept workflow traces to use with the ssh_attacker client
 │   │   ├── erlang_rce                  # PoC for the Erlang remote code execution vulnerability (CVE-2025-32433)
-│   │   └── strict_kex_violations       # PoCs for the strict kex violations given in Table 2 in the paper
+│   │   ├── strict_kex_violations       # PoCs for the strict kex violations given in Table 2 in the paper
+│   │   └── tectia_rogue_session        # PoC for the Tectia SSH rogue session attack vulnerability (CVE-2025-32942)
 │   ├── ssh_attacker                    # A highly modifiable SSH implementation written in Java that can be used as a library or directly as a client
 │   └── ssh_state_learner               # The SSH state learner written in Kotlin based on ssh_attacker
 ├── data
