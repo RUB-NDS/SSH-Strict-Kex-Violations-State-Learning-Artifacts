@@ -101,6 +101,12 @@ flags and options. You may also refer to the `learn_ssh_impl` function in the
 evaluation script to learn more about how to use the state learner. Please note,
 that this is not required to prove claim C1.
 
+> [!NOTE]
+> During state learning, the underlying SSH implementation prints out warning
+> messages regarding the use of channels that are not properly opened. These
+> warning messages are expected as state learning explores the behavior of
+> servers in case of unexpected messages.
+
 ### E2 - Testing Strict KEX Violations
 
 > [!NOTE]
