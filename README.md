@@ -92,7 +92,26 @@ the script's instruction and provide the server's address and port when asked.
 By default, the learner will be invoked with a timeout of 1 hour to avoid
 excessive learning times, similar to the results indicated in Table 5 in the paper.
 The resulting state machine, including all intermediate hypotheses, can be found
-in `results/<implementation>/<kex flow type>`.
+in `results/<implementation>/<kex flow type>`. Some of our state machines use an
+older `statistics.txt` file, which does not provide the per-iteration statistics
+of each run. The mapping between the results in Table 5, the `statistics.txt`
+file, and `statistics.json` file is described in the following table:
+
+| Table 5                  | `statistics.txt`                                | `statistics.json`                | Note                                                                                                                                                       |
+|--------------------------|-------------------------------------------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| # Iterations             | Number of counter examples                      | `counterExampleCount`            | # Iterations = `counterExampleCount` + 1                                                                                                                   |
+| # Queries (Learn.)       | Number of resets during learning                | `learningStats.learnResetCount`  |                                                                                                                                                            |
+| # Queries (Equiv.)       | Number of resets during equivalence checks      | `learningStats.equivResetCount`  |                                                                                                                                                            |
+| Time [s]                 | Time it took to learn state machine             | `duration`                       | `statistics.txt` and `statistics.json` use milliseconds                                                                                                    |
+| # States                 | Number of states                                | `states`                         |                                                                                                                                                            |
+| # Transitions (Total)    | *not included*                                  | *not included*                   | To obtain, run `grep -E "s[0-9]+ -> s[0-9]+" 127.0.0.1_TRANSPORT_long.dot \| wc -l` from within the same folder where the `statistics.json` file resides   |
+| # Transitions (Distinct) | *not included*                                  | *not included*                   | To obtain, run `grep -E "s[0-9]+ -> s[0-9]+" 127.0.0.1_TRANSPORT_medium.dot \| wc -l` from within the same folder where the `statistics.json` file resides |
+| *not included*           | Total number of steps                           | `learningStats.totalSymbolCount` | `totalSymbolCount` = `learnSymbolCount` + `equivSymbolCount`                                                                                               |
+| *not included*           | Number of steps during learning                 | `learningStats.learnSymbolCount` |                                                                                                                                                            |
+| *not included*           | Number of steps during equivalence checks       | `learningStats.equivSymbolCount` |                                                                                                                                                            |
+| *not included*           | Total number of resets                          | `learningStats.totalResetCount`  | `totalResetCount` = `learnResetCount` + `equivResetCount`                                                                                                  |
+| *not included*           | Number of restarts due to cache inconsistencies | `cacheInconsistencyRestarts`     |                                                                                                                                                            |
+| *not included*           | Cache hit rate                                  | `cacheHitRate`                   |                                                                                                                                                            |
 
 If desired, the `ssh-state-learner:latest` image can be used directly to learn
 other targets or to tweak the options given to the state learner. Run
