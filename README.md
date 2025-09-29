@@ -43,10 +43,9 @@ docker run --rm ssh-state-learner:latest --help
 The following major claims are made with regard to the artifacts:
 
 1. The `ssh_state_learner` tool (`code/ssh_state_learner`) is capable of
-   extracting the state machine of SSH server implementations with strict kex
+   extracting the state machine of SSH server implementations with strict KEX
    enabled by state learning. In particular, it can be used to learn state
-   machines similar to the ones given in `data/state_machines` and Table 5 in
-   the paper.
+   machines similar to the ones given in `data/state_machines`.
 2. The violations described in Section 4.2 and Table 2 in the paper are accurate
    and can be verified by a proof-of-concept protocol flow.
 3. Erlang SSH 5.2.8 (Erlang/OTP version 27.3.0.0) is vulnerable to
@@ -87,17 +86,18 @@ learning. The script supports all variants listed in Table 2 in the paper.
 Afterward, the script will start 16 instances of the target SSH server
 for learning and bind them to ports 30020-30035 on localhost. For Bitvise SSH,
 Lancom LCOS and Tectia SSH manual installation steps are required. Follow
-the script's instruction and provide the server's address and port when asked.
+the script's instructions and provide the server's address and port when asked.
 
 By default, the learner will be invoked with a timeout of 1 hour to avoid
-excessive learning times, similar to the results indicated in Table 5 in the paper.
+excessive learning times, similar to the manual timeout mentioned in the paper.
 The resulting state machine, including all intermediate hypotheses, can be found
-in `results/<implementation>/<kex flow type>`. Some of our state machines use an
+in `results/<implementation>/<KEX flow type>`. Some of our state machines use an
 older `statistics.txt` file, which does not provide the per-iteration statistics
-of each run. The mapping between the results in Table 5, the `statistics.txt`
-file, and `statistics.json` file is described in the following table:
+of each run. The mapping between the results in the `supp_material/103-learning-stats.pdf`
+table, the `statistics.txt` file, and `statistics.json` file is described in the
+following table:
 
-| Table 5                  | `statistics.txt`                                | `statistics.json`                | Note                                                                                                                                                       |
+| `103-learning-stats.pdf` | `statistics.txt`                                | `statistics.json`                | Note                                                                                                                                                       |
 |--------------------------|-------------------------------------------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | # Iterations             | Number of counter examples                      | `counterExampleCount`            | # Iterations = `counterExampleCount` + 1                                                                                                                   |
 | # Queries (Learn.)       | Number of resets during learning                | `learningStats.learnResetCount`  |                                                                                                                                                            |
@@ -134,7 +134,7 @@ that this is not required to prove claim C1.
 
 Run `scripts/02_test_strict_kex_violation.sh`. You will be asked to select one
 of the violations given in Table 2 in the paper. With the violation selected,
-the script will start an SSH protocol flow that violates strict kex with the
+the script will start an SSH protocol flow that violates strict KEX with the
 corresponding SSH server (similar to E1, manual interaction is required for
 Lancom LCOS and Tectia SSH). You may inspect the printed workflow trace file to
 learn about which messages are sent and received.
@@ -174,17 +174,17 @@ contained a syntax error, indicative of a successful remote code execution.
 │   ├── impl                            # Dockerfiles and docker-compose.yml files for SSH servers running on Linux
 │   ├── pocs                            # Proof-of-concept workflow traces to use with the ssh_attacker client
 │   │   ├── erlang_rce                  # PoC for the Erlang remote code execution vulnerability (CVE-2025-32433)
-│   │   ├── strict_kex_violations       # PoCs for the strict kex violations given in Table 2 in the paper
+│   │   ├── strict_kex_violations       # PoCs for the strict KEX violations given in Table 2 in the paper
 │   │   └── tectia_rogue_session        # PoC for the Tectia SSH rogue session attack vulnerability (CVE-2025-32942)
 │   ├── ssh_attacker                    # A highly modifiable SSH implementation written in Java that can be used as a library or directly as a client
 │   └── ssh_state_learner               # The SSH state learner written in Kotlin based on ssh_attacker
 ├── data
 │   └── state_machines                  # Results from our experimental evaluation
 ├── scripts
-│   ├── 00_build_images.sh              # Script for setting up a fresh evaluation environment with all dependencies installed
-│   ├── 01_learn_ssh_impl.sh            # Runs the key_scraper tool on GitHub, Gitlab, and Launchpad for 24 hours
-│   ├── 02_test_strict_kex_violation.sh # Performs a full run of the evaluation pipeline on the keys collected by the key_scraper tool
-│   └── 03_run_erlang_rce_poc.sh        # Generates test keys for testing public key upload restrictions
+│   ├── 00_build_images.sh              # Script to build all required Docker images for evaluation
+│   ├── 01_learn_ssh_impl.sh            # Runs the ssh_state_learner with a timeout of 1 hour and resonable defaults on an implementation of choice
+│   ├── 02_test_strict_kex_violation.sh # Runs proof-of-concept protocol flows proving one of the observed violations in Table 2 of the paper
+│   └── 03_run_erlang_rce_poc.sh        # Runs the proof-of-concept of the Erlang RCE vulnerability (CVE-2025-32433) against a local Erlang SSH server
 ├── supp_material                       # Contains additional material that did not make it into the final version of the paper but may be of interest
 └── README.md
 ```
